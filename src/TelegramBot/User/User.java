@@ -1,4 +1,4 @@
-package User;
+package TelegramBot.User;
 
 public class User {
     private String kingdomName;
