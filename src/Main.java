@@ -7,5 +7,6 @@ public class Main {
     public static void main(String[] args) throws TelegramApiException{
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(new KingdomBot());
+        helloWorld!;
     }
 }

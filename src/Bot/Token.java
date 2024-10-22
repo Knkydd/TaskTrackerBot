@@ -12,7 +12,6 @@ public class Token {
             return line;
         } catch (IOException e) {
             e.printStackTrace();
-
         }
         return null;
     }
