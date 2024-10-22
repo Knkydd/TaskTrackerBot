@@ -2,4 +2,5 @@
 /shelf/
 /.idea/workspace.xml
 /Token.txt
-/.gradle
+./.gradle
+./gradle
