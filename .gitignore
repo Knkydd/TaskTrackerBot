@@ -1,4 +1,5 @@
 # Default ignored files
 /shelf/
 /.idea/workspace.xml
-/Token.txtgit push
+/Token.txt
+/.gradle

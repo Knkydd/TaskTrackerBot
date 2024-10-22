@@ -31,13 +31,14 @@ public class Keyboard {
     }
     public static SendMessage sendCustomKeyboard(long chatID){
         SendMessage message = new SendMessage();
-        message.setText("");
         message.setChatId(chatID);
 
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-
+        keyboardMarkup.setResizeKeyboard(true);
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
+        row.add("");
+        row.add("");
         row.add("/start");
         keyboard.add(row);
         keyboardMarkup.setKeyboard(keyboard);
