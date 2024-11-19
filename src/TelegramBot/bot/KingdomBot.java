@@ -1,4 +1,4 @@
-package TelegramBot.Bot;
+package TelegramBot.bot;
 
 import TelegramBot.utility.Keyboard;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -42,10 +42,10 @@ public class KingdomBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatID = update.getMessage().getChatId();
-
+            sendMessage(Keyboard.sendHelloKeyboard(chatID));
             if (messageText.equalsIgnoreCase("/start")) {
-                sendMessage(Keyboard.sendInlineKeyboard(chatID));
-                sendMessage(Keyboard.sendCustomKeyboard(chatID));
+                sendMessage(Keyboard.sendStartKeyboard(chatID));
+                sendMessage(Keyboard.sendHelloKeyboard(chatID));
             }
         }
     }

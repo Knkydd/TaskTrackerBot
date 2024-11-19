@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Keyboard {
-    public static SendMessage sendInlineKeyboard(long chatID) {
+    public static SendMessage sendStartKeyboard(long chatID) {
         SendMessage message = new SendMessage();
         message.setChatId(chatID);
         message.setText("Добро пожаловать!");
@@ -29,7 +29,8 @@ public class Keyboard {
 
         return message;
     }
-    public static SendMessage sendCustomKeyboard(long chatID){
+
+    public static SendMessage sendHelloKeyboard(long chatID) {
         SendMessage message = new SendMessage();
         message.setChatId(chatID);
 
@@ -37,12 +38,18 @@ public class Keyboard {
         keyboardMarkup.setResizeKeyboard(true);
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
-        row.add("");
-        row.add("");
         row.add("/start");
         keyboard.add(row);
         keyboardMarkup.setKeyboard(keyboard);
         message.setReplyMarkup(keyboardMarkup);
+        return message;
+    }
+
+
+    public static SendMessage sendGameKeyboard(long chatID) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatID);
+        message.setText("");
         return message;
     }
 }

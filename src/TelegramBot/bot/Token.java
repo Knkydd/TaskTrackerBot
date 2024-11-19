@@ -1,4 +1,4 @@
-package TelegramBot.Bot;
+package TelegramBot.bot;
 
 import java.io.*;
 import java.util.Scanner;

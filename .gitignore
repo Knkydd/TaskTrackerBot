@@ -1,6 +1,11 @@
 # Default ignored files
 /shelf/
 /.idea/workspace.xml
+#Token
 /Token.txt
-./.gradle
-./gradle
+#More
+/target/
+/gradle/
+/.gradle/
+/.idea/
+

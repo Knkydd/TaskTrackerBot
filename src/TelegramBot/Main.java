@@ -1,6 +1,6 @@
 package TelegramBot;
 
-import TelegramBot.Bot.KingdomBot;
+import TelegramBot.bot.KingdomBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
