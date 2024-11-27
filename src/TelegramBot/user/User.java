@@ -1,25 +1,50 @@
 package TelegramBot.user;
 
+import java.util.HashMap;
+
 public class User {
     private String kingdomName;
-    private int wood, stone, gold, eat;
+    private final long chatID;
+    private HashMap<String, Integer> kingdomResources = new HashMap<>();
+    private HashMap<String, Integer> structures = new HashMap<>(); //Здание: Уровень
+    private HashMap<String, Integer> army = new HashMap<>(); // Тип воина: Кол-во
 
-    public User(String kingdomName, int root){
+    public User(long charID){
         this.kingdomName = kingdomName;
-        this.stone = this.wood = 10;
-        this.eat = 15;
-        this.gold = 100;
+        this.chatID = charID;
+        this.kingdomResources.put("Wood", 10);
+        this.kingdomResources.put("Food", 15);
+        this.kingdomResources.put("Gold", 100);
     }
 
-    public void setWood(int value){
-        this.wood = this.wood + value;
+    public void setResource(String resource, int value){
+        if (resource == "Wood"){
+            this.kingdomResources.put("Wood", value);
+        } else if (resource == "Gold"){
+            this.kingdomResources.put("Gold", value);
+        } else if (resource == "Food"){
+            this.kingdomResources.put("Food", value);
+        }
     }
 
-    public int getWood(){
-        return this.wood;
+    public int getResource(String resource){
+        int value = 0;
+        if (resource == "Wood"){
+            value = this.kingdomResources.get("Wood");
+        } else if (resource == "Gold"){
+            value = this.kingdomResources.get("Gold");
+        } else if (resource == "Food") {
+            value = this.kingdomResources.get("Wood");
+        }
+        return value;
     }
 
 
+    public void sendUserInformation(){
+        System.out.println(this.chatID);
+        System.out.println(this.kingdomName);
+        System.out.println(this.kingdomResources);
+    }
 }
 
 

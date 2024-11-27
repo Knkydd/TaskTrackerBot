@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="KingdomBot" />
+        <module name="KingdomBots" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="KingdomBot" target="23" />
+      <module name="KingdomBots" target="23" />
     </bytecodeTargetLevel>
   </component>
 </project>

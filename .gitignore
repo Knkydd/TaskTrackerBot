@@ -4,8 +4,5 @@
 #Token
 /Token.txt
 #More
-/target/
-/gradle/
-/.gradle/
-/.idea/
+
 
