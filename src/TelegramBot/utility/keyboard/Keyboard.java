@@ -20,12 +20,12 @@ public class Keyboard {
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup gameKeyboard(){
+    public static InlineKeyboardMarkup gameKeyboard() {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.gameButtons);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup actionKeyboard(){
+    public static InlineKeyboardMarkup actionKeyboard() {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.actionsButtons);
         return keyboard;
     }

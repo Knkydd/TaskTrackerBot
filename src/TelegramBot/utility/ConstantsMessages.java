@@ -7,5 +7,4 @@ public class ConstantsMessages {
     public final static String ACTIONS_MESSAGE = "Выберите действие";
     public final static String CHECK_REGISTRATION_MESSAGE = "Вы уже зарегистрированы, нажмите кнопку продолжить, чтобы продолжить игру.";
     public final static String CHECK_CONTINUE_MESSAGE = "Вы не начинали игру. Пожалуйста, нажмите Начать игру, чтобы начать играть.";
-
 }

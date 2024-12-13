@@ -10,7 +10,7 @@ public class ButtonsMaps {
     public final static Map<String, String> gameButtons = new HashMap<>();
     public final static Map<String, String> actionsButtons = new HashMap<>();
 
-    static{
+    static {
         startButtons.put(ConstantKB.START_BUTTON, ConstantKB.CALLBACK_START_BUTTON);
         startButtons.put(ConstantKB.CONTINUE_BUTTON, ConstantKB.CALLBACK_CONTINUE_BUTTON);
         startButtons.put(ConstantKB.LEADERBOARD_BUTTON, ConstantKB.CALLBACK_LEADERBOARD_BUTTON);

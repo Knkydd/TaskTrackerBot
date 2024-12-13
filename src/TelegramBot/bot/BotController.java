@@ -53,22 +53,24 @@ public class BotController {
         Integer messageID = update.getCallbackQuery().getMessage().getMessageId();
         String username = update.getCallbackQuery().getFrom().getUserName();
         if (Arrays.asList(ConstantKB.listCallbackData).contains(callbackData)) {
+
             switch (callbackData) {
                 case ConstantKB.CALLBACK_START_BUTTON:
                     if (!dbConnection.getDatabaseTools().isRegistered(chatID)) {
                         dbConnection.getDatabaseTools().registrationUser(chatID, username);
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, GameLogic.gameMessage(dbConnection.getDatabaseTools().getResources(chatID))));
                     } else {
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID,messageID, ConstantsMessages.CHECK_REGISTRATION_MESSAGE,1));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, ConstantsMessages.CHECK_REGISTRATION_MESSAGE, 1));
                     }
                     break;
                 case ConstantKB.CALLBACK_CONTINUE_BUTTON:
                     if (dbConnection.getDatabaseTools().isRegistered(chatID)) {
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, GameLogic.gameMessage(dbConnection.getDatabaseTools().getResources(chatID))));
                     } else {
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID,messageID, ConstantsMessages.CHECK_CONTINUE_MESSAGE,1));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, ConstantsMessages.CHECK_CONTINUE_MESSAGE, 1));
                         break;
                     }
+
 
             }
         }
