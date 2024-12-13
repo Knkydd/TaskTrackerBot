@@ -4,5 +4,6 @@
 #Token
 /Token.txt
 #More
-
+/src/TelegramBot/data/Config.java
+/ConfigDB.txt
 
