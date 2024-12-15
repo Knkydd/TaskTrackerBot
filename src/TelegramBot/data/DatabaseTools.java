@@ -1,12 +1,9 @@
 package TelegramBot.data;
 
-import TelegramBot.utility.keyboard.ConstantKB;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DatabaseTools extends Config {
@@ -17,15 +14,8 @@ public class DatabaseTools extends Config {
     }
 
     public void registrationUser(long chatID, String username) {
-        String registrationString = String.format("BEGIN; INSERT INTO %s(%s, %s) VALUES (%s, '%s'); " +
-                        "INSERT INTO %s(%s, %s, %s, %s) VALUES (%s, %s, %s, %s); " +
-                        "INSERT INTO %s(%s, %s, %s, %s) VALUES (%s, %s, %s, %s); " +
-                        "INSERT INTO %s(%s, %s, %s) VALUES (%s, %s, %s); " +
-                        "COMMIT;",
-                ConstantDB.TABLE_USERS, ConstantDB.USER_ID, ConstantDB.USER_NAME, chatID, username,
-                ConstantDB.TABLE_RESOURCES, ConstantDB.USER_ID, ConstantDB.USER_FOOD, ConstantDB.USER_WOOD, ConstantDB.USER_GOLD, chatID, 10, 15, 20,
-                ConstantDB.TABLE_ARMY, ConstantDB.USER_ID, ConstantDB.USER_ARMY_POWER, ConstantDB.USER_UNIT_1, ConstantDB.USER_UNIT_2, chatID, 1, 1, 1,
-                ConstantDB.TABLE_BUILDS, ConstantDB.USER_ID, ConstantDB.USER_BUILD1, ConstantDB.USER_BUILD2, chatID, 1, 1);
+        String registrationString = String.format("INSERT INTO %s(%s, %s) VALUES(%s, '%s')",
+                ConstantDB.TABLE_USERS, ConstantDB.USER_ID, ConstantDB.USER_NAME, chatID, username);
         try (Statement statement = dbConnection.createStatement()) {
             statement.executeUpdate(registrationString);
         } catch (SQLException e) {
@@ -35,12 +25,10 @@ public class DatabaseTools extends Config {
 
     public boolean isRegistered(long chatID) {
         ResultSet result = null;
-        boolean res;
         String regString = String.format("SELECT %s FROM %s where %s=%s", ConstantDB.USER_ID, ConstantDB.TABLE_USERS, ConstantDB.USER_ID, chatID);
         try (Statement statement = dbConnection.createStatement()) {
             result = statement.executeQuery(regString);
-            res = result.next();
-            if (res) {
+            if (result.next()) {
                 return true;
             }
         } catch (SQLException e) {
@@ -66,4 +54,28 @@ public class DatabaseTools extends Config {
         return resources;
     }
 
+    public Map<String, Integer> getLeaderboard() {
+        ResultSet resultSet = null;
+        String res = String.format("SELECT %s FROM %s", ConstantDB.USER_NAME, ConstantDB.TABLE_USERS);
+        String res1 = String.format("SELECT %s FROM %s", ConstantDB.USER_ARMY_POWER, ConstantDB.TABLE_ARMY);
+        List<String> names = new ArrayList<>();
+        int i = 0;
+        Map<String, Integer> leaderboard = new HashMap<>();
+        try (Statement statement = dbConnection.createStatement()) {
+            resultSet = statement.executeQuery(res);
+            while (resultSet.next() && i != 6) {
+                names.add(resultSet.getString("username"));
+                i++;
+            }
+            resultSet = statement.executeQuery(res1);
+            while (resultSet.next() && i != 6) {
+                leaderboard.put(names.getFirst(), resultSet.getInt("armyPower"));
+                names.removeFirst();
+                i++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return leaderboard;
+    }
 }

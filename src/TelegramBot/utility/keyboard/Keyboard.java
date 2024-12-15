@@ -5,6 +5,9 @@ import TelegramBot.utility.ConstantsMessages;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Keyboard {
     public static SendMessage startKeyboardMessage(long chatID) {
         SendMessage message = new SendMessage();
@@ -27,6 +30,16 @@ public class Keyboard {
 
     public static InlineKeyboardMarkup actionKeyboard() {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.actionsButtons);
+        return keyboard;
+    }
+
+    public static InlineKeyboardMarkup warningKeyboard(){
+        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton);
+        return keyboard;
+    }
+
+    public static InlineKeyboardMarkup leaderboardKeyboard(){
+        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton);
         return keyboard;
     }
 }

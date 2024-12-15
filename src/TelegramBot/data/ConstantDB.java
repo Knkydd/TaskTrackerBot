@@ -15,11 +15,4 @@ public class ConstantDB {
     public final static String USER_ARMY_POWER = "armyPower";
     public final static String USER_UNIT_1 = "unit1";
     public final static String USER_UNIT_2 = "unit2";
-
-    public final static String USERNAME = "ИмяПользователя";
-    public final static String WOOD = "Дерево";
-    public final static String FOOD = "Еда";
-    public final static String GOLD = "Золото";
-    public final static String BUILD1 = "Постройка1";
-    public final static String ARMY_POWER = "МощьАрмии";
 }
