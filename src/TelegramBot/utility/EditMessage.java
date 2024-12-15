@@ -30,7 +30,7 @@ public class EditMessage {
                 break;
             case ConstantKB.CALLBACK_BUILDS_BUTTON:
                 messageEdited.setText(text);
-                messageEdited.setReplyMarkup(Keyboard.warningKeyboard());
+                messageEdited.setReplyMarkup(Keyboard.buildKeyboard());
                 break;
             case ConstantKB.CALLBACK_NEXT_MOVE_BUTTON:
                 messageEdited.setText(text);

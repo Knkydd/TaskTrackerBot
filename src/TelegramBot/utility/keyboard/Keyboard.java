@@ -33,13 +33,18 @@ public class Keyboard {
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup warningKeyboard(){
+    public static InlineKeyboardMarkup warningKeyboard() {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup leaderboardKeyboard(){
+    public static InlineKeyboardMarkup leaderboardKeyboard() {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton);
+        return keyboard;
+    }
+
+    public static InlineKeyboardMarkup buildKeyboard() {
+        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.buildMenuButtons);
         return keyboard;
     }
 }

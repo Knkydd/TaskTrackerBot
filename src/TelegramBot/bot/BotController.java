@@ -64,7 +64,7 @@ public class BotController {
                 case ConstantKB.CALLBACK_START_BUTTON:
                     if (!dbConnection.getDatabaseTools().isRegistered(chatID)) {
                         dbConnection.getDatabaseTools().registrationUser(chatID, username);
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, GameLogic.gameMessage(dbConnection.getDatabaseTools().getResources(chatID))));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantsMessages.GAME_MESSAGE));
                         userStateRepository.setState(chatID, ConstantKB.CALLBACK_START_BUTTON);
                     } else {
                         messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantsMessages.CHECK_REGISTRATION_MESSAGE, 1));
@@ -72,7 +72,7 @@ public class BotController {
                     break;
                 case ConstantKB.CALLBACK_CONTINUE_BUTTON:
                     if (dbConnection.getDatabaseTools().isRegistered(chatID)) {
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, GameLogic.gameMessage(dbConnection.getDatabaseTools().getResources(chatID))));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantsMessages.GAME_MESSAGE));
                         userStateRepository.setState(chatID, ConstantKB.CALLBACK_CONTINUE_BUTTON);
                     } else {
                         messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantsMessages.CHECK_CONTINUE_MESSAGE, 1));
@@ -87,7 +87,7 @@ public class BotController {
                     userStateRepository.setState(chatID, ConstantKB.CALLBACK_ACTION_BUTTON);
                     break;
                 case ConstantKB.CALLBACK_BUILDS_BUTTON:
-                    messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, "В разработке"));
+                    messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, GameLogic.gameMessage(dbConnection.getDatabaseTools().getResources(chatID))));
                     userStateRepository.setState(chatID, ConstantKB.CALLBACK_BUILDS_BUTTON);
                     break;
                 case ConstantKB.CALLBACK_NEXT_MOVE_BUTTON:
