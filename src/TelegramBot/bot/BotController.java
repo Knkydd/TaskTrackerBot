@@ -1,16 +1,15 @@
 package TelegramBot.bot;
 
+import TelegramBot.data.ConstantDB;
 import TelegramBot.data.DatabaseConnection;
-import TelegramBot.utility.ConstantBuildUp;
-import TelegramBot.utility.ConstantMessages;
-import TelegramBot.utility.EditMessage;
-import TelegramBot.utility.MessageSender;
+import TelegramBot.utility.*;
 import TelegramBot.utility.keyboard.ConstantKB;
 import TelegramBot.utility.keyboard.Keyboard;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class BotController {
     private final MessageSender messageSender;
@@ -45,7 +44,7 @@ public class BotController {
         String text = update.getMessage().getText();
         if (text.equalsIgnoreCase("/start")) {
             messageSender.send(chatID, Keyboard.startKeyboardMessage(chatID));
-            if(userStateRepository.isEmpty()) {
+            if (userStateRepository.isEmpty()) {
                 userStateRepository.setState(chatID, ConstantKB.MAIN_MENU);
             } else {
                 userStateRepository.removeAll();
@@ -121,13 +120,26 @@ public class BotController {
 
         } else if (Arrays.asList(ConstantBuildUp.LIST_UPBUILD_BUILD_CALLBACK).contains(callbackData)) {
             userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON);
-            if(Builds.checkUpbuildBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData)) {
-                dbConnection.getDatabaseTools().setBuilds(chatID, Builds.upbuildBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData));
-                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_SUCCESSFUL));
+            callbackData = callbackData.substring(0, callbackData.length() - 7);
+            if (Builds.checkUpbuildBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData)) {
+                if (Resources.checkResourcesOnSpending(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData))) {
+                    dbConnection.getDatabaseTools().setResources(chatID, Resources.updateResources(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData)));
+                    dbConnection.getDatabaseTools().setBuilds(chatID, Builds.upbuildBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData));
+                    messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_SUCCESSFUL));
+
+                } else {
+                    messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED_RESOURCES));
+                }
+
             } else {
-                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID,ConstantMessages.BUILD_FAILED));
+
+                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED));
+
             }
-        } else if(Arrays.asList(ConstantBuildUp.LIST_UPGRADE_BUILD_CALLBACK).contains(callbackData) ){
+
+        } else if (Arrays.asList(ConstantBuildUp.LIST_UPGRADE_BUILD_CALLBACK).contains(callbackData)) {
+            userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
+            callbackData = callbackData.substring(0, callbackData.length() - 7);
         }
     }
 }

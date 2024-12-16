@@ -10,4 +10,5 @@ public class ConstantMessages {
     public final static String GAME_MESSAGE = "Ваше королевство активно развивается и вы величаво смотрите на него из своей ратуши.";
     public final static String BUILD_SUCCESSFUL = "Постройка успешно построена";
     public final static String BUILD_FAILED = "Вы хотите построить то, что уже построено";
+    public final static String BUILD_FAILED_RESOURCES = "Вам не хватает ресурсов для постройки";
 }

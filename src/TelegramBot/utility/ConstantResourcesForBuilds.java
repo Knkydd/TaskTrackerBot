@@ -19,6 +19,8 @@ public class ConstantResourcesForBuilds {
 
     public final static Map<String, Integer> LIST_LIMITS = new HashMap<>();
 
+    public final static Map<String, Map<String, Integer>> RESOURCES_FOR_BUILD = new HashMap<>();
+
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_1 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_2 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_3 = new HashMap<>();
@@ -84,22 +86,67 @@ public class ConstantResourcesForBuilds {
         LIST_LIMITS.put(ConstantDB.USER_CHURCH_OF_LAST_HOPE, LIMIT_LEVEL_FOR_CHURCH_OF_LAST_HOPE);
         LIST_LIMITS.put(ConstantDB.USER_CHURCH, LIMIT_LEVEL_FOR_CHURCH);
 
+        RESOURCES_FOR_QUARRY_BUILD.put("Wood", 30);
+        RESOURCES_FOR_QUARRY_BUILD.put("Gold", 500);
+        RESOURCES_FOR_QUARRY_BUILD.put("Stone", 20);
+        RESOURCES_FOR_QUARRY_BUILD.put("Food", 0);
 
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Wood", 50);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Gold", 500);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Stone", 30);
+        RESOURCES_FOR_TRADE_BUILD_BUILD.put("Wood",20);
+        RESOURCES_FOR_TRADE_BUILD_BUILD.put("Gold",500);
+        RESOURCES_FOR_TRADE_BUILD_BUILD.put("Stone",10);
+        RESOURCES_FOR_TRADE_BUILD_BUILD.put("Food",0);
 
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Wood", 100);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Gold", 700);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Stone", 70);
+        RESOURCES_FOR_MAGE_TOWN_BUILD.put("Wood", 100);
+        RESOURCES_FOR_MAGE_TOWN_BUILD.put("Gold", 1000);
+        RESOURCES_FOR_MAGE_TOWN_BUILD.put("Stone", 150);
+        RESOURCES_FOR_MAGE_TOWN_BUILD.put("Food", 0);
 
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Wood", 150);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Gold", 1000);
-        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Stone", 120);
+        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Wood", 40);
+        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Gold", 400);
+        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Stone", 25);
+        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Food", 0);
 
         RESOURCES_FOR_CHURCH_BUILD.put("Wood", 40);
         RESOURCES_FOR_CHURCH_BUILD.put("Gold", 800);
         RESOURCES_FOR_CHURCH_BUILD.put("Stone", 100);
+        RESOURCES_FOR_CHURCH_BUILD.put("Food", 0);
+
+        RESOURCES_FOR_SHOOTING_RANGE_BUILD.put("Wood", 30);
+        RESOURCES_FOR_SHOOTING_RANGE_BUILD.put("Gold", 30);
+        RESOURCES_FOR_SHOOTING_RANGE_BUILD.put("Stone", 30);
+        RESOURCES_FOR_SHOOTING_RANGE_BUILD.put("Food", 0);
+
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_QUARRY, RESOURCES_FOR_QUARRY_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_TRADE_BUILD, RESOURCES_FOR_TRADE_BUILD_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_MAGE_TOWER, RESOURCES_FOR_MAGE_TOWN_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_CHURCH, RESOURCES_FOR_CHURCH_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_SHOOTING_RANGE, RESOURCES_FOR_SHOOTING_RANGE_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_CHURCH_OF_LAST_HOPE, RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD);
+
+
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Wood", 50);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Gold", 500);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Stone", 30);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Food", 0);
+
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Wood", 100);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Gold", 700);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Stone", 70);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_2.put("Food", 0);
+
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Wood", 150);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Gold", 1000);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Stone", 120);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_3.put("Food", 0);
+
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Wood", 250);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Gold", 1500);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Stone", 200);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Food", 0);
+
+
+
+
 
     }
 

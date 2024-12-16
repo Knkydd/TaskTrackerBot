@@ -77,14 +77,13 @@ public class Builds {
     }
 
     public static boolean checkUpbuildBuilds(Map<String, Integer> builds, String build) {
-        build = build.substring(0, build.length() - 7);
-        if (!builds.get(build).equals(0))
+        if (!builds.get(build).equals(0)) {
             return false;
+        }
         return true;
     }
 
     public static Map<String, Integer> upbuildBuilds(Map<String, Integer> builds, String build) {
-        build = build.substring(0, build.length() - 7);
         builds.put(build, 1);
         return builds;
     }

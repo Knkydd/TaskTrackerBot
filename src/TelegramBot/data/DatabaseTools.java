@@ -61,11 +61,11 @@ public class DatabaseTools extends Config {
     }
 
     public void setResources(long chatID, Map<String, Integer> resources) {
-        String insertResources = String.format("UPDATE %s SET %s=%s, %s=%s, %s=%s, %s=%s, WHERE %s=%s",
+        String insertResources = String.format("UPDATE %s SET %s=%s, %s=%s, %s=%s, %s=%s WHERE %s=%s",
                 ConstantDB.TABLE_RESOURCES, ConstantDB.USER_GOLD, resources.get("Gold"), ConstantDB.USER_WOOD, resources.get("Wood"),
                 ConstantDB.USER_FOOD, resources.get("Food"), ConstantDB.USER_STONE, resources.get("Stone"), ConstantDB.USER_ID, chatID);
         try (Statement statement = dbConnection.createStatement()) {
-            statement.executeQuery(insertResources);
+            statement.executeUpdate(insertResources);
         } catch (SQLException e) {
             e.printStackTrace();
         }
