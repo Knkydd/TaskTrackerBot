@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class KeyboardBuilder {
-    public static InlineKeyboardMarkup createKeyboard(Map<String, String> buttonMap) {
+    public static InlineKeyboardMarkup createKeyboard(Map<String, String> buttonMap, int rows) {
         InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboardRowsList = new ArrayList<>();
         List<InlineKeyboardButton> keyboardRow = new ArrayList<>();
@@ -16,7 +16,7 @@ public class KeyboardBuilder {
         for (Map.Entry<String, String> entry : buttonMap.entrySet()) {
             InlineKeyboardButton button = createButton(entry.getKey(), entry.getValue());
             keyboardRow.add(button);
-            if (keyboardRow.size() == 2) {
+            if (keyboardRow.size() == rows) {
                 keyboardRowsList.add(keyboardRow);
                 keyboardRow = new ArrayList<>();
             }

@@ -1,12 +1,19 @@
 package TelegramBot.bot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UserStateRepository {
     private final Map<Long, List<String>> userStates = new HashMap<>();
+
+    public boolean isEmpty(){
+        if(userStates.isEmpty())
+            return true;
+        return false;
+    }
+
+    public void removeAll(){
+        userStates.clear();
+    }
 
     public void setState(long chatID, String newState) {
         if (userStates.isEmpty()) {
