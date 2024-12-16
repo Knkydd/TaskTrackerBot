@@ -1,7 +1,4 @@
-package TelegramBot.bot;
-
-import TelegramBot.data.ConstantDB;
-import TelegramBot.utility.ConstantResourcesForBuilds;
+package TelegramBot.bot.logic;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -3,7 +3,6 @@ package TelegramBot.utility.keyboard;
 import TelegramBot.data.ConstantDB;
 import TelegramBot.utility.ConstantBuildUp;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,7 +38,7 @@ public class ButtonsMaps {
 
         upgradeButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.USER_SHOOTING_RANGE_UPGRADE);
         upgradeButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.USER_MAGE_TOWER_UPGRADE);
-        upgradeButtons.put(ConstantDB.CHURCH_OF_LAST_HOPE, ConstantBuildUp.USER_CHURCH_OF_LAST_HOPE_UPGRADE);
+        upgradeButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.USER_CHAPEL_OF_LAST_HOPE_UPGRADE);
         upgradeButtons.put(ConstantDB.BARRACKS, ConstantBuildUp.USER_BARRACKS_UPGRADE);
         upgradeButtons.put(ConstantDB.TOWN_HALL, ConstantBuildUp.USER_TOWN_HALL_UPGRADE);
         upgradeButtons.put(ConstantDB.SAWMILL, ConstantBuildUp.USER_SAWMILL_UPGRADE);
@@ -51,7 +50,7 @@ public class ButtonsMaps {
 
         upbuildButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.USER_SHOOTING_RANGE_UPBUILD);
         upbuildButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.USER_MAGE_TOWER_UPBUILD);
-        upbuildButtons.put(ConstantDB.CHURCH_OF_LAST_HOPE, ConstantBuildUp.USER_CHURCH_OF_LAST_HOPE_UPBUILD);
+        upbuildButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.USER_CHAPEL_OF_LAST_HOPE_UPBUILD);
         upbuildButtons.put(ConstantDB.CHURCH, ConstantBuildUp.USER_CHURCH_UPBUILD);
         upbuildButtons.put(ConstantDB.TRADE_BUILD, ConstantBuildUp.USER_TRADE_BUILD_UPBUILD);
         upbuildButtons.put(ConstantDB.QUARRY, ConstantBuildUp.USER_QUARRY_UPBUILD);

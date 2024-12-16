@@ -1,4 +1,4 @@
-package TelegramBot.bot;
+package TelegramBot.bot.logic;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -14,19 +14,23 @@ public class ConstantResourcesForBuilds {
     public final static Integer LIMIT_LEVEL_FOR_BARRACKS = 3;
     public final static Integer LIMIT_LEVEL_FOR_MAGE_TOWER = 3;
     public final static Integer LIMIT_LEVEL_FOR_SHOOTING_RANGE = 3;
-    public final static Integer LIMIT_LEVEL_FOR_CHURCH_OF_LAST_HOPE = 3;
+    public final static Integer LIMIT_LEVEL_FOR_CHAPEL_OF_LAST_HOPE = 3;
     public final static Integer LIMIT_LEVEL_FOR_CHURCH = 3;
 
     public final static Map<String, Integer> LIST_LIMITS = new HashMap<>();
 
     public final static Map<String, Map<String, Integer>> RESOURCES_FOR_BUILD = new HashMap<>();
+    public final static Map<String, Map<Integer, Map<String, Integer>>> RESOURCES_FOR_UPGRADE = new HashMap<>();
 
+    public final static Map<Integer, Map<String, Integer>> RESOURCES_FOR_TOWN_HALL_UPGRADE = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_1 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_2 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_3 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_TOWN_HALL_UPGRADE_4 = new HashMap<>();
 
     public final static Map<String, Integer> RESOURCES_FOR_QUARRY_BUILD = new HashMap<>();
+    public final static Map<Integer, Map<String, Integer>> RESOURCES_FOR_QUARRY_UPGRADE = new HashMap<>();
+
     public final static Map<String, Integer> RESOURCES_FOR_QUARRY_UPGRADE_1 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_QUARRY_UPGRADE_2 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_QUARRY_UPGRADE_3 = new HashMap<>();
@@ -64,10 +68,11 @@ public class ConstantResourcesForBuilds {
     public final static Map<String, Integer> RESOURCES_FOR_SHOOTING_RANGE_UPGRADE_2 = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_SHOOTING_RANGE_UPGRADE_3 = new HashMap<>();
 
-    public final static Map<String, Integer> RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD = new HashMap<>();
-    public final static Map<String, Integer> RESOURCES_FOR_CHURCH_OF_LAST_HOPE_UPGRADE_1 = new HashMap<>();
-    public final static Map<String, Integer> RESOURCES_FOR_CHURCH_OF_LAST_HOPE_UPGRADE_2 = new HashMap<>();
-    public final static Map<String, Integer> RESOURCES_FOR_CHURCH_OF_LAST_HOPE_UPGRADE_3 = new HashMap<>();
+    public final static Map<String, Integer> RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD = new HashMap<>();
+    public final static Map<String, Integer> RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_UPGRADE_1 = new HashMap<>();
+    public final static Map<String, Integer> RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_UPGRADE_2 = new HashMap<>();
+    public final static Map<String, Integer> RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_UPGRADE_3 = new HashMap<>();
+
 
     public final static Map<String, Integer> RESOURCES_FOR_CHURCH_BUILD = new HashMap<>();
     public final static Map<String, Integer> RESOURCES_FOR_CHURCH_UPGRADE_1 = new HashMap<>();
@@ -83,7 +88,7 @@ public class ConstantResourcesForBuilds {
         LIST_LIMITS.put(ConstantDB.USER_BARRACKS, LIMIT_LEVEL_FOR_BARRACKS);
         LIST_LIMITS.put(ConstantDB.USER_MAGE_TOWER, LIMIT_LEVEL_FOR_MAGE_TOWER);
         LIST_LIMITS.put(ConstantDB.USER_SHOOTING_RANGE, LIMIT_LEVEL_FOR_SHOOTING_RANGE);
-        LIST_LIMITS.put(ConstantDB.USER_CHURCH_OF_LAST_HOPE, LIMIT_LEVEL_FOR_CHURCH_OF_LAST_HOPE);
+        LIST_LIMITS.put(ConstantDB.USER_CHAPEL_OF_LAST_HOPE, LIMIT_LEVEL_FOR_CHAPEL_OF_LAST_HOPE);
         LIST_LIMITS.put(ConstantDB.USER_CHURCH, LIMIT_LEVEL_FOR_CHURCH);
 
         RESOURCES_FOR_QUARRY_BUILD.put("Wood", 30);
@@ -101,10 +106,10 @@ public class ConstantResourcesForBuilds {
         RESOURCES_FOR_MAGE_TOWN_BUILD.put("Stone", 150);
         RESOURCES_FOR_MAGE_TOWN_BUILD.put("Food", 0);
 
-        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Wood", 40);
-        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Gold", 400);
-        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Stone", 25);
-        RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD.put("Food", 0);
+        RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD.put("Wood", 40);
+        RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD.put("Gold", 400);
+        RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD.put("Stone", 25);
+        RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD.put("Food", 0);
 
         RESOURCES_FOR_CHURCH_BUILD.put("Wood", 40);
         RESOURCES_FOR_CHURCH_BUILD.put("Gold", 800);
@@ -121,7 +126,7 @@ public class ConstantResourcesForBuilds {
         RESOURCES_FOR_BUILD.put(ConstantDB.USER_MAGE_TOWER, RESOURCES_FOR_MAGE_TOWN_BUILD);
         RESOURCES_FOR_BUILD.put(ConstantDB.USER_CHURCH, RESOURCES_FOR_CHURCH_BUILD);
         RESOURCES_FOR_BUILD.put(ConstantDB.USER_SHOOTING_RANGE, RESOURCES_FOR_SHOOTING_RANGE_BUILD);
-        RESOURCES_FOR_BUILD.put(ConstantDB.USER_CHURCH_OF_LAST_HOPE, RESOURCES_FOR_CHURCH_OF_LAST_HOPE_BUILD);
+        RESOURCES_FOR_BUILD.put(ConstantDB.USER_CHAPEL_OF_LAST_HOPE, RESOURCES_FOR_CHAPEL_OF_LAST_HOPE_BUILD);
 
 
         RESOURCES_FOR_TOWN_HALL_UPGRADE_1.put("Wood", 50);
@@ -143,6 +148,12 @@ public class ConstantResourcesForBuilds {
         RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Gold", 1500);
         RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Stone", 200);
         RESOURCES_FOR_TOWN_HALL_UPGRADE_4.put("Food", 0);
+
+        RESOURCES_FOR_TOWN_HALL_UPGRADE.put(1,RESOURCES_FOR_TOWN_HALL_UPGRADE_1);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE.put(2,RESOURCES_FOR_TOWN_HALL_UPGRADE_2);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE.put(3,RESOURCES_FOR_TOWN_HALL_UPGRADE_3);
+        RESOURCES_FOR_TOWN_HALL_UPGRADE.put(4,RESOURCES_FOR_TOWN_HALL_UPGRADE_4);
+        RESOURCES_FOR_UPGRADE.put(ConstantDB.USER_TOWN_HALL,RESOURCES_FOR_TOWN_HALL_UPGRADE);
 
 
 

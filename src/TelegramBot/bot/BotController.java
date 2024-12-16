@@ -1,6 +1,9 @@
 package TelegramBot.bot;
 
-import TelegramBot.data.ConstantDB;
+import TelegramBot.bot.logic.Builds;
+import TelegramBot.bot.logic.Leaderboard;
+import TelegramBot.bot.logic.Resources;
+import TelegramBot.bot.logic.UserStateRepository;
 import TelegramBot.data.DatabaseConnection;
 import TelegramBot.utility.*;
 import TelegramBot.utility.keyboard.ConstantKB;
@@ -9,7 +12,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Arrays;
-import java.util.Map;
 
 public class BotController {
     private final MessageSender messageSender;
@@ -70,7 +72,7 @@ public class BotController {
                 case ConstantKB.CALLBACK_START_BUTTON:
                     if (!dbConnection.getDatabaseTools().isRegistered(chatID)) {
                         dbConnection.getDatabaseTools().registrationUser(chatID, username);
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantMessages.GAME_MESSAGE));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantMessages.GAME_MESSAGE+Resources.resourceMessage(dbConnection.getDatabaseTools().getResources(chatID))));
                         userStateRepository.setState(chatID, ConstantKB.CALLBACK_START_BUTTON);
                     } else {
                         messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.CHECK_REGISTRATION_MESSAGE));
@@ -79,7 +81,7 @@ public class BotController {
 
                 case ConstantKB.CALLBACK_CONTINUE_BUTTON:
                     if (dbConnection.getDatabaseTools().isRegistered(chatID)) {
-                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantMessages.GAME_MESSAGE));
+                        messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, ConstantMessages.GAME_MESSAGE+Resources.resourceMessage(dbConnection.getDatabaseTools().getResources(chatID))));
                         userStateRepository.setState(chatID, ConstantKB.CALLBACK_CONTINUE_BUTTON);
                     } else {
                         messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.CHECK_CONTINUE_MESSAGE));
@@ -99,6 +101,10 @@ public class BotController {
                 case ConstantKB.CALLBACK_BUILDS_BUTTON:
                     messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, Builds.buildsMessage(dbConnection.getDatabaseTools().getBuilds(chatID))));
                     userStateRepository.setState(chatID, ConstantKB.CALLBACK_BUILDS_BUTTON);
+                    break;
+                case ConstantKB.CALLBACK_ARMY_BUTTON:
+                    messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, "В разработке"));
+                    userStateRepository.setState(chatID, ConstantKB.CALLBACK_ARMY_BUTTON);
                     break;
 
                 case ConstantKB.CALLBACK_NEXT_MOVE_BUTTON:
@@ -140,6 +146,15 @@ public class BotController {
         } else if (Arrays.asList(ConstantBuildUp.LIST_UPGRADE_BUILD_CALLBACK).contains(callbackData)) {
             userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
             callbackData = callbackData.substring(0, callbackData.length() - 7);
+            if(Builds.checkUpgradeBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData)){
+                if(Resources.checkResourcesOnSpending(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(dbConnection.getDatabaseTools().getBuilds(chatID).get(callbackData)))){
+                    dbConnection.getDatabaseTools().setResources(chatID, Resources.updateResources(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(dbConnection.getDatabaseTools().getBuilds(chatID).get(callbackData))));
+                    dbConnection.getDatabaseTools().setBuilds(chatID, Builds.upgradeBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData));
+                    messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));
+                }
+            } else {
+                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
+            }
         }
     }
 }

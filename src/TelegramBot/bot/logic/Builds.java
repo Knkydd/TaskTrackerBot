@@ -1,4 +1,4 @@
-package TelegramBot.bot;
+package TelegramBot.bot.logic;
 
 import TelegramBot.data.ConstantDB;
 import TelegramBot.utility.ConstantBuildUp;
@@ -35,11 +35,13 @@ public class Builds {
             String temp = (String) iteratorBuildsKeys.next();
             String tempMessage = "";
             if(builds.get(temp) + 1 > ConstantResourcesForBuilds.LIST_LIMITS.get(temp)){
-                tempMessage = String.format("%s:       %s(Максимум)\n", i, ConstantDB.accordanceListOfBuilds.get(temp));
+                tempMessage = String.format("%s:      %s(Максимум)\n", i, ConstantDB.accordanceListOfBuilds.get(temp));
             } else if (builds.get(temp).equals(0)){
                 continue;
             } else {
-                tempMessage = String.format("%s:     %s     Уровень %s -> Уровень %s\n", i, ConstantDB.accordanceListOfBuilds.get(temp), builds.get(temp), builds.get(temp)+1);
+                tempMessage = String.format("%s:     %s     Уровень %s -> Уровень %s \n",
+                        i, ConstantDB.accordanceListOfBuilds.get(temp), builds.get(temp), builds.get(temp)+1);
+
             }
             message += tempMessage;
             i++;
@@ -47,12 +49,16 @@ public class Builds {
         return message;
     }
 
-    public static boolean checkUpgradeBuilds(Map<String, Integer> builds) {
+    public static boolean checkUpgradeBuilds(Map<String, Integer> builds, String build) {
+        if(builds.get(build) >= ConstantResourcesForBuilds.LIST_LIMITS.get(build)){
+            return false;
+        }
         return true;
     }
 
-    public static void updateBuilds(Map<String, Integer> builds, String build) {
-
+    public static Map<String, Integer> upgradeBuilds(Map<String, Integer> builds, String build) {
+        builds.put(build, builds.get(build)+1);
+        return builds;
     }
 
     public static String upbuildBuildsMessage(Map<String, Integer> builds) {

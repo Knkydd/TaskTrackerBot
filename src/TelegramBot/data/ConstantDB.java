@@ -28,7 +28,7 @@ public class ConstantDB {
     public final static String USER_BARRACKS = "barracks";
     public final static String USER_MAGE_TOWER = "mageTower";
     public final static String USER_SHOOTING_RANGE = "shootingRange";
-    public final static String USER_CHURCH_OF_LAST_HOPE = "churchOfLastHope";
+    public final static String USER_CHAPEL_OF_LAST_HOPE = "chapelOfLastHope";
     public final static String USER_CHURCH = "church";
 
     public final static String USER_ARMY_POWER = "armyPower";
@@ -51,7 +51,7 @@ public class ConstantDB {
     public final static String BARRACKS = "Барраки";
     public final static String MAGE_TOWER = "Башня магов";
     public final static String SHOOTING_RANGE = "Стрельбище";
-    public final static String CHURCH_OF_LAST_HOPE = "Церковня последней надежды";
+    public final static String CHAPEL_OF_LAST_HOPE = "Часовня последней надежды";
     public final static String CHURCH = "Церковь";
 
     public final static String WARRIOR_UNIT = "Воин";
@@ -69,7 +69,7 @@ public class ConstantDB {
         accordanceListOfBuilds.put(USER_BARRACKS, BARRACKS);
         accordanceListOfBuilds.put(USER_MAGE_TOWER, MAGE_TOWER);
         accordanceListOfBuilds.put(USER_SHOOTING_RANGE, SHOOTING_RANGE);
-        accordanceListOfBuilds.put(USER_CHURCH_OF_LAST_HOPE, CHURCH_OF_LAST_HOPE);
+        accordanceListOfBuilds.put(USER_CHAPEL_OF_LAST_HOPE, CHAPEL_OF_LAST_HOPE);
         accordanceListOfBuilds.put(USER_CHURCH, CHURCH);
 
         accordanceListOfArmy.put(USER_WARRIOR_UNIT, WARRIOR_UNIT); // Здесь также

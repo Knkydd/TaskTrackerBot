@@ -3,6 +3,8 @@ package TelegramBot.utility;
 import TelegramBot.utility.keyboard.*;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 
+import java.security.Key;
+
 public class EditMessage {
     public static EditMessageText messageEdit(long chatID, Integer messageID, String callbackData, String text) {
         EditMessageText messageEdited = new EditMessageText();
@@ -49,7 +51,10 @@ public class EditMessage {
                 messageEdited.setText(text);
                 messageEdited.setReplyMarkup(Keyboard.upgradeBuildsKeyboard());
                 break;
-
+            case ConstantKB.CALLBACK_ARMY_BUTTON:
+                messageEdited.setText(text);
+                messageEdited.setReplyMarkup(Keyboard.warningKeyboard());
+                break;
         }
         return messageEdited;
     }

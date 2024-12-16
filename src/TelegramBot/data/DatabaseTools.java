@@ -117,6 +117,15 @@ public class DatabaseTools extends Config {
         }
     }
 
+    public void setArmyPower(long chatID, Integer armyPower){
+        String insertArmyPower = String.format("UPDATE %s SET %s=%s WHERE %s=%s", ConstantDB.TABLE_USERS, ConstantDB.USER_ARMY_POWER, armyPower, ConstantDB.USER_ID, chatID);
+        try(Statement statement = dbConnection.createStatement()){
+            statement.executeUpdate(insertArmyPower);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public Map<String, Integer> getBuilds(long chatID) {
         Map<String, Integer> builds = new HashMap<>();
         ResultSet resultSet = null;
@@ -132,7 +141,7 @@ public class DatabaseTools extends Config {
                 builds.put(ConstantDB.USER_BARRACKS, resultSet.getInt(ConstantDB.USER_BARRACKS));
                 builds.put(ConstantDB.USER_MAGE_TOWER, resultSet.getInt(ConstantDB.USER_MAGE_TOWER));
                 builds.put(ConstantDB.USER_SHOOTING_RANGE, resultSet.getInt(ConstantDB.USER_SHOOTING_RANGE));
-                builds.put(ConstantDB.USER_CHURCH_OF_LAST_HOPE, resultSet.getInt(ConstantDB.USER_CHURCH_OF_LAST_HOPE));
+                builds.put(ConstantDB.USER_CHAPEL_OF_LAST_HOPE, resultSet.getInt(ConstantDB.USER_CHAPEL_OF_LAST_HOPE));
                 builds.put(ConstantDB.USER_CHURCH, resultSet.getInt(ConstantDB.USER_CHURCH));
             }
         } catch (SQLException e) {
@@ -142,12 +151,12 @@ public class DatabaseTools extends Config {
     }
 
     public void setBuilds(long chatID, Map<String, Integer> builds) {
-        String insertBuilds = String.format("UPDATE %s SET %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s WHERE %s=%s",
-                ConstantDB.TABLE_BUILDS, ConstantDB.USER_QUARRY, builds.get(ConstantDB.USER_QUARRY),
+        String insertBuilds = String.format("UPDATE %s SET %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s WHERE %s=%s",
+                ConstantDB.TABLE_BUILDS, ConstantDB.USER_QUARRY, builds.get(ConstantDB.USER_QUARRY), ConstantDB.USER_TOWN_HALL, builds.get(ConstantDB.USER_TOWN_HALL),
                 ConstantDB.USER_FARM, builds.get(ConstantDB.USER_FARM), ConstantDB.USER_SAWMILL, builds.get(ConstantDB.USER_SAWMILL),
                 ConstantDB.USER_TRADE_BUILD, builds.get(ConstantDB.USER_TRADE_BUILD), ConstantDB.USER_BARRACKS, builds.get(ConstantDB.USER_BARRACKS),
                 ConstantDB.USER_MAGE_TOWER, builds.get(ConstantDB.USER_MAGE_TOWER), ConstantDB.USER_SHOOTING_RANGE, builds.get(ConstantDB.USER_SHOOTING_RANGE),
-                ConstantDB.USER_CHURCH_OF_LAST_HOPE, builds.get(ConstantDB.USER_CHURCH_OF_LAST_HOPE), ConstantDB.USER_CHURCH, builds.get(ConstantDB.USER_CHURCH),
+                ConstantDB.USER_CHAPEL_OF_LAST_HOPE, builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE), ConstantDB.USER_CHURCH, builds.get(ConstantDB.USER_CHURCH),
                 ConstantDB.USER_ID, chatID);
         try (Statement statement = dbConnection.createStatement()) {
             statement.executeUpdate(insertBuilds);
