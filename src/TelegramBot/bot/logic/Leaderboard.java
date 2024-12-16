@@ -1,7 +1,6 @@
 package TelegramBot.bot.logic;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Leaderboard {
     public static String leaderboardMessage(Map<String, Integer> leaderboard){

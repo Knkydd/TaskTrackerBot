@@ -38,11 +38,6 @@ public class ConstantDB {
     public final static String USER_PALADIN_UNIT = "paladinUnit";
     public final static String USER_HEALER_UNIT = "healerUnit";
 
-    public final static String WOOD = "Дерево";
-    public final static String GOLD = "Золото";
-    public final static String FOOD = "Еда";
-    public final static String STONE = "Камень";
-
     public final static String TOWN_HALL = "Ратуша";
     public final static String SAWMILL = "Лесопилка";
     public final static String QUARRY = "Карьер";

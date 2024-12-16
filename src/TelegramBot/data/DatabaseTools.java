@@ -90,15 +90,15 @@ public class DatabaseTools extends Config {
     public Map<String, Integer> getArmy(long chatID) {
         Map<String, Integer> army = new HashMap<>();
         ResultSet resultSet = null;
-        String getterArmy = String.format("SELECT * FROM % WHERE %s=%s", ConstantDB.TABLE_ARMY, ConstantDB.USER_ID, chatID);
+        String getterArmy = String.format("SELECT * FROM %s WHERE %s=%s", ConstantDB.TABLE_ARMY, ConstantDB.USER_ID, chatID);
         try (Statement statement = dbConnection.createStatement()) {
             resultSet = statement.executeQuery(getterArmy);
             while (resultSet.next()) {
-                army.put(ConstantDB.USER_WARRIOR_UNIT, resultSet.getInt("warriorUnit"));
-                army.put(ConstantDB.USER_MAGE_UNIT, resultSet.getInt("mageUnit"));
-                army.put(ConstantDB.USER_ARCHER_UNIT, resultSet.getInt("archerUnit"));
-                army.put(ConstantDB.USER_PALADIN_UNIT, resultSet.getInt("paladinUnit"));
-                army.put(ConstantDB.USER_HEALER_UNIT, resultSet.getInt("healerUnit"));
+                army.put(ConstantDB.USER_WARRIOR_UNIT, resultSet.getInt(ConstantDB.USER_WARRIOR_UNIT));
+                army.put(ConstantDB.USER_MAGE_UNIT, resultSet.getInt(ConstantDB.USER_MAGE_UNIT));
+                army.put(ConstantDB.USER_ARCHER_UNIT, resultSet.getInt(ConstantDB.USER_ARCHER_UNIT));
+                army.put(ConstantDB.USER_PALADIN_UNIT, resultSet.getInt(ConstantDB.USER_PALADIN_UNIT));
+                army.put(ConstantDB.USER_HEALER_UNIT, resultSet.getInt(ConstantDB.USER_HEALER_UNIT));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,23 +107,38 @@ public class DatabaseTools extends Config {
     }
 
     public void setArmy(long chatID, Map<String, Integer> army) {
-        String insertArmy = String.format("UPDATE % SET %s=%s, %s=%s, %s=%s, %s=%s, %s=%s, %s=%s WHERE %s=%s",
+        String insertArmy = String.format("UPDATE %s SET %s=%s, %s=%s, %s=%s, %s=%s, %s=%s WHERE %s=%s",
                 ConstantDB.TABLE_ARMY, ConstantDB.USER_WARRIOR_UNIT, army.get("warriorUnit"), ConstantDB.USER_MAGE_UNIT, army.get("mageUnit"),
                 ConstantDB.USER_ARCHER_UNIT, army.get("archerUnit"), ConstantDB.USER_PALADIN_UNIT, army.get("paladinUnit"), ConstantDB.USER_HEALER_UNIT, army.get("healerUnit"), ConstantDB.USER_ID, chatID);
         try (Statement statement = dbConnection.createStatement()) {
-            statement.executeQuery(insertArmy);
+            statement.executeUpdate(insertArmy);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void setArmyPower(long chatID, Integer armyPower){
+    public void setArmyPower(long chatID, Integer armyPower) {
         String insertArmyPower = String.format("UPDATE %s SET %s=%s WHERE %s=%s", ConstantDB.TABLE_USERS, ConstantDB.USER_ARMY_POWER, armyPower, ConstantDB.USER_ID, chatID);
-        try(Statement statement = dbConnection.createStatement()){
+        try (Statement statement = dbConnection.createStatement()) {
             statement.executeUpdate(insertArmyPower);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Integer getArmyPower(long chatID){
+        Integer armyPower = 0;
+        ResultSet resultSet = null;
+        String getterArmyPower = String.format("SELECT %s FROM %s WHERE %s=%s", ConstantDB.USER_ARMY_POWER, ConstantDB.TABLE_USERS, ConstantDB.USER_ID, chatID);
+        try(Statement statement = dbConnection.createStatement()){
+            resultSet = statement.executeQuery(getterArmyPower);
+            if(resultSet.next()) {
+                armyPower = resultSet.getInt(ConstantDB.USER_ARMY_POWER);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return armyPower;
     }
 
     public Map<String, Integer> getBuilds(long chatID) {

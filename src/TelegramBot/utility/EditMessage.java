@@ -3,8 +3,6 @@ package TelegramBot.utility;
 import TelegramBot.utility.keyboard.*;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 
-import java.security.Key;
-
 public class EditMessage {
     public static EditMessageText messageEdit(long chatID, Integer messageID, String callbackData, String text) {
         EditMessageText messageEdited = new EditMessageText();

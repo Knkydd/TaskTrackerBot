@@ -3,9 +3,6 @@ package TelegramBot.bot;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.sql.SQLException;
-
-
 public class KingdomBot extends TelegramLongPollingBot {
     private final BotController botContoller;
 
