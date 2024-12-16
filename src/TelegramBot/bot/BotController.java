@@ -151,6 +151,8 @@ public class BotController {
                     dbConnection.getDatabaseTools().setResources(chatID, Resources.updateResources(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(dbConnection.getDatabaseTools().getBuilds(chatID).get(callbackData))));
                     dbConnection.getDatabaseTools().setBuilds(chatID, Builds.upgradeBuilds(dbConnection.getDatabaseTools().getBuilds(chatID), callbackData));
                     messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));
+                } else {
+                    messageSender.send(chatID,EditMessage.warningMessage(chatID,messageID,ConstantMessages.BUILD_FAILED_RESOURCES));
                 }
             } else {
                 messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
