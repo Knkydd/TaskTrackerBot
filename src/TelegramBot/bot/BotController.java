@@ -1,6 +1,7 @@
 package TelegramBot.bot;
 
 import TelegramBot.bot.logic.*;
+import TelegramBot.data.ConstantDB;
 import TelegramBot.data.DatabaseConnection;
 import TelegramBot.utility.*;
 import TelegramBot.utility.keyboard.ConstantKB;
@@ -118,6 +119,10 @@ public class BotController {
                     messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID, callbackData, Builds.upgradeBuildsMessage(dbConnection.getDatabaseTools().getBuilds(chatID))));
                     userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
                     break;
+                case ConstantKB.CALLBACK_RECRUITING_BUTTON:
+                    messageSender.send(chatID, EditMessage.messageEdit(chatID, messageID,callbackData,Army.recruitingMessage(dbConnection.getDatabaseTools().getArmy(chatID), dbConnection.getDatabaseTools().getResources(chatID).get("Gold"))));
+                    userStateRepository.setState(chatID, ConstantKB.CALLBACK_RECRUITING_BUTTON);
+                    break;
 
             }
 
@@ -153,6 +158,15 @@ public class BotController {
                 }
             } else {
                 messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
+            }
+        } else if (Arrays.asList(ConstantDB.LIST_OF_UNITS).contains(callbackData)) {
+            userStateRepository.setState(chatID, ConstantKB.CALLBACK_RECRUITING_BUTTON);
+            if(Resources.checkResourcesOnSpending(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))){
+                dbConnection.getDatabaseTools().setResources(chatID, Resources.updateResources(dbConnection.getDatabaseTools().getResources(chatID), ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
+                dbConnection.getDatabaseTools().setArmy(chatID, Army.recruitingArmy(dbConnection.getDatabaseTools().getArmy(chatID), callbackData));
+                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_SUCCESSFUL));
+            } else {
+                messageSender.send(chatID, EditMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_FAILED));
             }
         }
     }

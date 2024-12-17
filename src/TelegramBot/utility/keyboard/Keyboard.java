@@ -54,6 +54,16 @@ public class Keyboard {
         InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.upbuildButtons, 3);
         return keyboard;
     }
+
+    public static InlineKeyboardMarkup armyKeyboard(){
+        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.armyButtons,2);
+        return keyboard;
+    }
+
+    public static InlineKeyboardMarkup recruitingKeyboard(){
+        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.recruitingButtons, 3);
+        return keyboard;
+    }
 }
 
 

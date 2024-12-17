@@ -55,6 +55,8 @@ public class ConstantDB {
     public final static String PALADIN_UNIT = "Паладин";
     public final static String HEALER_UNIT = "Целитель";
 
+    public final static String[] LIST_OF_UNITS = new String[]{USER_WARRIOR_UNIT, USER_MAGE_UNIT, USER_ARCHER_UNIT, USER_HEALER_UNIT, USER_PALADIN_UNIT};
+
     static {
         accordanceListOfBuilds.put(USER_TOWN_HALL, TOWN_HALL); // Для сообщений, чтобы были на русском
         accordanceListOfBuilds.put(USER_SAWMILL, SAWMILL);

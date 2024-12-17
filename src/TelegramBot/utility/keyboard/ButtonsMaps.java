@@ -3,6 +3,7 @@ package TelegramBot.utility.keyboard;
 import TelegramBot.data.ConstantDB;
 import TelegramBot.utility.ConstantBuildUp;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ public class ButtonsMaps {
     public final static Map<String, String> buildMenuButtons = new LinkedHashMap<>();
     public final static Map<String, String> upgradeButtons = new LinkedHashMap<>();
     public final static Map<String, String> upbuildButtons = new LinkedHashMap<>();
+    public final static Map<String, String> armyButtons = new LinkedHashMap<>();
+    public final static Map<String, String> recruitingButtons = new LinkedHashMap<>();
 
 
     static {
@@ -56,5 +59,14 @@ public class ButtonsMaps {
         upbuildButtons.put(ConstantDB.QUARRY, ConstantBuildUp.USER_QUARRY_UPBUILD);
         upbuildButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
 
+        armyButtons.put(ConstantKB.RECRUITING_BUTTON, ConstantKB.CALLBACK_RECRUITING_BUTTON);
+        armyButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
+
+        recruitingButtons.put(ConstantDB.WARRIOR_UNIT, ConstantDB.USER_WARRIOR_UNIT);
+        recruitingButtons.put(ConstantDB.MAGE_UNIT, ConstantDB.USER_MAGE_UNIT);
+        recruitingButtons.put(ConstantDB.ARCHER_UNIT, ConstantDB.USER_ARCHER_UNIT);
+        recruitingButtons.put(ConstantDB.PALADIN_UNIT, ConstantDB.USER_PALADIN_UNIT);
+        recruitingButtons.put(ConstantDB.HEALER_UNIT, ConstantDB.USER_HEALER_UNIT);
+        recruitingButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
     }
 }

@@ -13,4 +13,6 @@ public class ConstantMessages {
     public final static String BUILD_FAILED_RESOURCES = "Вам не хватает ресурсов для постройки\n";
     public final static String UPGRADE_BUILD_SUCCESSFUL = "Улучшение успешно\n";
     public final static String UPGRADE_BUILD_FAILED = "Постройка максимального уровня\n";
+    public final static String RECRUITING_UNIT_SUCCESSFUL = "Юнит успешно нанят\n";
+    public final static String RECRUITING_UNIT_FAILED = "Не хватает золота для найма\n";
 }
