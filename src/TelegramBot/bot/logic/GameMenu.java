@@ -3,9 +3,12 @@ package TelegramBot.bot.logic;
 import TelegramBot.bot.BotUtils;
 import TelegramBot.data.DatabaseConnection;
 import TelegramBot.data.DatabaseTools;
+import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.EditMessage;
 import TelegramBot.utility.MessageSender;
 import TelegramBot.utility.keyboard.ConstantKB;
+
+import java.util.Map;
 
 public class GameMenu {
     private DatabaseTools databaseTools;
@@ -23,17 +26,20 @@ public class GameMenu {
     public void gameMenuHandler(long chatID, String callbackData, Integer messageID){
         switch (callbackData) {
             case ConstantKB.CALLBACK_ACTION_BUTTON:
-                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, "Действия: "));
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_ACTION_BUTTON);
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, ConstantMessages.ACTIONS_MESSAGE));
                 break;
 
             case ConstantKB.CALLBACK_BUILDS_BUTTON:
-                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.buildsMessage(databaseTools.getBuilds(chatID))));
+                Map<String, Integer> builds = databaseTools.getBuilds(chatID);
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_BUILDS_BUTTON);
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.buildsMessage(builds)));
                 break;
             case ConstantKB.CALLBACK_ARMY_BUTTON:
-                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Army.armyMessage(databaseTools.getArmy(chatID), databaseTools.getArmyPower(chatID))));
+                Map<String, Integer> army = databaseTools.getArmy(chatID);
+                Integer armyPower = databaseTools.getArmyPower(chatID);
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_ARMY_BUTTON);
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Army.armyMessage(army, armyPower)));
                 break;
         }
     }

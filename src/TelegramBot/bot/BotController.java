@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.sql.SQLException;
 
-public class BotController {
+public class BotController{
     private final MessageSender messageSender;
     private final BotUtils botUtils;
     private final DatabaseConnection dbConnection;
@@ -53,7 +53,7 @@ public class BotController {
         }
     }
 
-    public void handleCallbackData(Update update) {
+    private void handleCallbackData(Update update) {
         long chatID = update.getCallbackQuery().getMessage().getChatId();
         String callbackData = update.getCallbackQuery().getData();
         Integer messageID = update.getCallbackQuery().getMessage().getMessageId();

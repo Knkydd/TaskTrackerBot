@@ -80,12 +80,20 @@ public class Army {
 
     public void recruitingHandler(long chatID, String callbackData, Integer messageID) {
         userStateRepository.setState(chatID, ConstantKB.CALLBACK_ARMY_BUTTON);
-        if (Resources.checkResourcesOnSpending(databaseTools.getResources(chatID), ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))) {
-            databaseTools.setResources(chatID, Resources.updateResources(databaseTools.getResources(chatID), ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
-            databaseTools.setArmy(chatID, Army.recruitingArmy(databaseTools.getArmy(chatID), callbackData));
+
+        Map<String, Integer> army = databaseTools.getArmy(chatID);
+        Map<String, Integer> resources = databaseTools.getResources(chatID);
+
+        if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))) {
+
+            databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
+            databaseTools.setArmy(chatID, Army.recruitingArmy(army, callbackData));
             messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_SUCCESSFUL));
+
         } else {
+
             messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_FAILED));
+
         }
 
     }
