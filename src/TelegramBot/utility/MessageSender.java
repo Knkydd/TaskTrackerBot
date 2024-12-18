@@ -6,11 +6,9 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageTe
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MessageSender {
-    private final SendMessage newMessage;
     private final TelegramLongPollingBot bot;
 
     public MessageSender(TelegramLongPollingBot bot) {
-        newMessage = new SendMessage();
         this.bot = bot;
     }
 

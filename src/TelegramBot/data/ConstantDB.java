@@ -15,10 +15,10 @@ public class ConstantDB {
     public final static String USER_ID = "chatID";
     public final static String USER_NAME = "username";
 
-    public final static String USER_WOOD = "wood";
-    public final static String USER_GOLD = "gold";
-    public final static String USER_FOOD = "food";
-    public final static String USER_STONE = "stone";
+    public final static String USER_WOOD = "Wood";
+    public final static String USER_GOLD = "Gold";
+    public final static String USER_FOOD = "Food";
+    public final static String USER_STONE = "Stone";
 
     public final static String USER_TOWN_HALL = "townHall";
     public final static String USER_SAWMILL = "sawmill";

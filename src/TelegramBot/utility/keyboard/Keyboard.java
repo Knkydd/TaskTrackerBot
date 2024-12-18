@@ -6,7 +6,13 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 public class Keyboard {
-    public static SendMessage startKeyboardMessage(long chatID) {
+    private KeyboardBuilder keyboardBuilder;
+
+    public Keyboard(){
+        this.keyboardBuilder = new KeyboardBuilder();
+
+    }
+    public SendMessage startKeyboardMessage(long chatID) {
         SendMessage message = new SendMessage();
         message.setChatId(chatID);
         message.setText(ConstantMessages.START_MESSAGE);
@@ -15,53 +21,53 @@ public class Keyboard {
         return message;
     }
 
-    public static InlineKeyboardMarkup startKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.startButtons,1);
+    public InlineKeyboardMarkup startKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.startButtons,1);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup gameKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.gameButtons,2);
+    public InlineKeyboardMarkup gameKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.gameButtons,2);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup actionKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.actionsButtons,2);
+    public InlineKeyboardMarkup actionKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.actionsButtons,3);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup warningKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton,1);
+    public InlineKeyboardMarkup warningKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton,1);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup leaderboardKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton,1);
+    public InlineKeyboardMarkup leaderboardKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.oneBackButton,1);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup buildsKeyboard() {
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.buildMenuButtons, 2);
+    public InlineKeyboardMarkup buildsKeyboard() {
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.buildMenuButtons, 2);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup upgradeBuildsKeyboard(){
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.upgradeButtons, 3);
+    public InlineKeyboardMarkup upgradeBuildsKeyboard(){
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.upgradeButtons, 3);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup upbuildBuildsKeyboard(){
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.upbuildButtons, 3);
+    public InlineKeyboardMarkup upbuildBuildsKeyboard(){
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.upbuildButtons, 3);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup armyKeyboard(){
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.armyButtons,2);
+    public InlineKeyboardMarkup armyKeyboard(){
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.armyButtons,2);
         return keyboard;
     }
 
-    public static InlineKeyboardMarkup recruitingKeyboard(){
-        InlineKeyboardMarkup keyboard = KeyboardBuilder.createKeyboard(ButtonsMaps.recruitingButtons, 3);
+    public InlineKeyboardMarkup recruitingKeyboard(){
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.recruitingButtons, 3);
         return keyboard;
     }
 }

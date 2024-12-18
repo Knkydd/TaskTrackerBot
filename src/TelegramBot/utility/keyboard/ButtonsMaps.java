@@ -3,7 +3,6 @@ package TelegramBot.utility.keyboard;
 import TelegramBot.data.ConstantDB;
 import TelegramBot.utility.ConstantBuildUp;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,26 +36,30 @@ public class ButtonsMaps {
 
         actionsButtons.put(ConstantKB.ATTACK_BUTTON, ConstantKB.CALLBACK_ATTACK_BUTTON);
         actionsButtons.put(ConstantKB.NEXT_MOVE_BUTTON, ConstantKB.CALLBACK_NEXT_MOVE_BUTTON);
+        actionsButtons.put(ConstantKB.MOVE_CHOP, ConstantKB.CALLBACK_MOVE_CHOP);
+        actionsButtons.put(ConstantKB.MOVE_DIG, ConstantKB.CALLBACK_MOVE_DIG);
+        actionsButtons.put(ConstantKB.MOVE_TRADE, ConstantKB.CALLBACK_MOVE_TRADE);
+        actionsButtons.put(ConstantKB.MOVE_WORK_ON_FARM, ConstantKB.CALLBACK_MOVE_WORK_ON_FARM);
         actionsButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
 
-        upgradeButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.USER_SHOOTING_RANGE_UPGRADE);
-        upgradeButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.USER_MAGE_TOWER_UPGRADE);
-        upgradeButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.USER_CHAPEL_OF_LAST_HOPE_UPGRADE);
-        upgradeButtons.put(ConstantDB.BARRACKS, ConstantBuildUp.USER_BARRACKS_UPGRADE);
-        upgradeButtons.put(ConstantDB.TOWN_HALL, ConstantBuildUp.USER_TOWN_HALL_UPGRADE);
-        upgradeButtons.put(ConstantDB.SAWMILL, ConstantBuildUp.USER_SAWMILL_UPGRADE);
-        upgradeButtons.put(ConstantDB.CHURCH, ConstantBuildUp.USER_CHURCH_UPGRADE);
-        upgradeButtons.put(ConstantDB.FARM, ConstantBuildUp.USER_FARM_UPGRADE);
-        upgradeButtons.put(ConstantDB.QUARRY, ConstantBuildUp.USER_QUARRY_UPGRADE);
-        upgradeButtons.put(ConstantDB.TRADE_BUILD, ConstantBuildUp.USER_TRADE_BUILD_UPGRADE);
+        upgradeButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.SHOOTING_RANGE_UPGRADE);
+        upgradeButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.MAGE_TOWER_UPGRADE);
+        upgradeButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.CHAPEL_OF_LAST_HOPE_UPGRADE);
+        upgradeButtons.put(ConstantDB.BARRACKS, ConstantBuildUp.BARRACKS_UPGRADE);
+        upgradeButtons.put(ConstantDB.TOWN_HALL, ConstantBuildUp.TOWN_HALL_UPGRADE);
+        upgradeButtons.put(ConstantDB.SAWMILL, ConstantBuildUp.SAWMILL_UPGRADE);
+        upgradeButtons.put(ConstantDB.CHURCH, ConstantBuildUp.CHURCH_UPGRADE);
+        upgradeButtons.put(ConstantDB.FARM, ConstantBuildUp.FARM_UPGRADE);
+        upgradeButtons.put(ConstantDB.QUARRY, ConstantBuildUp.QUARRY_UPGRADE);
+        upgradeButtons.put(ConstantDB.TRADE_BUILD, ConstantBuildUp.TRADE_BUILD_UPGRADE);
         upgradeButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
 
-        upbuildButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.USER_SHOOTING_RANGE_UPBUILD);
-        upbuildButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.USER_MAGE_TOWER_UPBUILD);
-        upbuildButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.USER_CHAPEL_OF_LAST_HOPE_UPBUILD);
-        upbuildButtons.put(ConstantDB.CHURCH, ConstantBuildUp.USER_CHURCH_UPBUILD);
-        upbuildButtons.put(ConstantDB.TRADE_BUILD, ConstantBuildUp.USER_TRADE_BUILD_UPBUILD);
-        upbuildButtons.put(ConstantDB.QUARRY, ConstantBuildUp.USER_QUARRY_UPBUILD);
+        upbuildButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.SHOOTING_RANGE_UPBUILD);
+        upbuildButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.MAGE_TOWER_UPBUILD);
+        upbuildButtons.put(ConstantDB.CHAPEL_OF_LAST_HOPE, ConstantBuildUp.CHAPEL_OF_LAST_HOPE_UPBUILD);
+        upbuildButtons.put(ConstantDB.CHURCH, ConstantBuildUp.CHURCH_UPBUILD);
+        upbuildButtons.put(ConstantDB.TRADE_BUILD, ConstantBuildUp.TRADE_BUILD_UPBUILD);
+        upbuildButtons.put(ConstantDB.QUARRY, ConstantBuildUp.QUARRY_UPBUILD);
         upbuildButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
 
         armyButtons.put(ConstantKB.RECRUITING_BUTTON, ConstantKB.CALLBACK_RECRUITING_BUTTON);
@@ -68,5 +71,7 @@ public class ButtonsMaps {
         recruitingButtons.put(ConstantDB.PALADIN_UNIT, ConstantDB.USER_PALADIN_UNIT);
         recruitingButtons.put(ConstantDB.HEALER_UNIT, ConstantDB.USER_HEALER_UNIT);
         recruitingButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
+
+
     }
 }

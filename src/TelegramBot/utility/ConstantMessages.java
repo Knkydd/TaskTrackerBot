@@ -15,4 +15,13 @@ public class ConstantMessages {
     public final static String UPGRADE_BUILD_FAILED = "Постройка максимального уровня\n";
     public final static String RECRUITING_UNIT_SUCCESSFUL = "Юнит успешно нанят\n";
     public final static String RECRUITING_UNIT_FAILED = "Не хватает золота для найма\n";
+    public final static String NEXT_MOVE_MESSAGE = "Ход сделан";
+    public final static String MOVE_CHOP_MESSAGE = "Вы успешно помогли с рубкой дров.\n" +
+                                                    "15 дерева добавлено";
+    public final static String MOVE_DIG_MESSAGE = "Вы успешно помогли с работой в карьере\n" +
+                                                    "10 камня добавлено";
+    public final static String MOVE_WORK_ON_FARM_MESSAGE = "Вы успешно помогли своим людям на ферме\n" +
+                                                            "30 еды добавлено";
+    public final static String MOVE_TRADE_MESSAGE = "Вы успешно помогли с торговлей\n" +
+                                                    "50 золота доабвлено";
 }

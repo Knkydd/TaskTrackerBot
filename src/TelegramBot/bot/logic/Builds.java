@@ -1,13 +1,32 @@
 package TelegramBot.bot.logic;
 
+import TelegramBot.bot.BotUtils;
 import TelegramBot.data.ConstantDB;
+import TelegramBot.data.DatabaseConnection;
+import TelegramBot.data.DatabaseTools;
+import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.ConstantResourcesForBuilds;
+import TelegramBot.utility.EditMessage;
+import TelegramBot.utility.MessageSender;
+import TelegramBot.utility.keyboard.ConstantKB;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 public class Builds {
+    private DatabaseTools databaseTools;
+    private MessageSender messageSender;
+    private UserStateRepository userStateRepository;
+    private EditMessage editMessage;
+
+    public Builds(BotUtils botUtils){
+        this.messageSender = botUtils.getMessageSender();
+        this.databaseTools = botUtils.getDatabaseTools();
+        this.userStateRepository = botUtils.getUserStateRepository();
+        this.editMessage = botUtils.getEditMessage();
+    }
+
     public static String buildsMessage(Map<String, Integer> builds) {
         String message = "Постройки, которые у вас есть: \n";
         Set<String> buildsKeys = builds.keySet();
@@ -90,5 +109,55 @@ public class Builds {
     public static Map<String, Integer> upbuildBuilds(Map<String, Integer> builds, String build) {
         builds.put(build, 1);
         return builds;
+    }
+
+    public void buildsHandler(long chatID, String callbackData, Integer messageID) {
+        switch (callbackData) {
+            case ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON:
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.upbuildBuildsMessage(databaseTools.getBuilds(chatID))));
+                userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON);
+                break;
+
+            case ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON:
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.upgradeBuildsMessage(databaseTools.getBuilds(chatID))));
+                userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
+                break;
+        }
+    }
+
+    public void buildsHandlerUpbuild(long chatID, String callbackData, Integer messageID){
+        userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON);
+        callbackData = callbackData.substring(0, callbackData.length() - 7);
+        if (Builds.checkUpbuildBuilds(databaseTools.getBuilds(chatID), callbackData)) {
+            if (Resources.checkResourcesOnSpending(databaseTools.getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData))) {
+                databaseTools.setResources(chatID, Resources.updateResources(databaseTools.getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData)));
+                databaseTools.setBuilds(chatID, Builds.upbuildBuilds(databaseTools.getBuilds(chatID), callbackData));
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_SUCCESSFUL));
+
+            } else {
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED_RESOURCES));
+            }
+
+        } else {
+
+            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED));
+
+        }
+    }
+
+    public void buildsHandlerUpgrade(long chatID, String callbackData, Integer messageID){
+        userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
+        callbackData = callbackData.substring(0, callbackData.length() - 7);
+        if (Builds.checkUpgradeBuilds(databaseTools.getBuilds(chatID), callbackData)) {
+            if (Resources.checkResourcesOnSpending(databaseTools.getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(databaseTools.getBuilds(chatID).get(callbackData)))) {
+                databaseTools.setResources(chatID, Resources.updateResources(databaseTools.getResources(chatID), ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(databaseTools.getBuilds(chatID).get(callbackData))));
+                databaseTools.setBuilds(chatID, Builds.upgradeBuilds(databaseTools.getBuilds(chatID), callbackData));
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));
+            } else {
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED_RESOURCES));
+            }
+        } else {
+            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
+        }
     }
 }
