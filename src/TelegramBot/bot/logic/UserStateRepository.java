@@ -16,11 +16,13 @@ public class UserStateRepository {
     }
 
     public void setState(long chatID, String newState) {
-        if (userStates.isEmpty()) {
+        if (userStates.get(chatID).isEmpty()) {
             userStates.computeIfAbsent(chatID, k -> new ArrayList<>()).add("mainMenu");
+            System.out.println(userStates);
         } else {
             List<String> states = userStates.get(chatID);
             states.add(newState);
+            System.out.println(userStates);
             userStates.put(chatID, states);
         }
     }
@@ -37,6 +39,7 @@ public class UserStateRepository {
             result = states.getLast();
             states.removeLast();
         }
+        System.out.println(userStates);
         return result;
     }
 }
