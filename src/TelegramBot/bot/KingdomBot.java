@@ -4,10 +4,10 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class KingdomBot extends TelegramLongPollingBot {
-    private final BotController botContoller;
+    private final BotController botController;
 
     public KingdomBot() {
-        this.botContoller = new BotController(this);
+        this.botController = new BotController(this);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class KingdomBot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
         try {
-            botContoller.updateReceived(update);
+            botController.updateReceived(update);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

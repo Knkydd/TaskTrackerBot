@@ -3,7 +3,7 @@ package TelegramBot.bot.logic;
 import java.util.*;
 
 public class UserStateRepository {
-    private final Map<Long, List<String>> userStates = new HashMap<>();
+    private final static Map<Long, List<String>> userStates = new HashMap<>();
 
     public boolean isEmpty(){
         if(userStates.isEmpty())
@@ -11,8 +11,8 @@ public class UserStateRepository {
         return false;
     }
 
-    public void removeAll(){
-        userStates.clear();
+    public void removeAll(long chatID){
+        userStates.get(chatID).clear();
     }
 
     public void setState(long chatID, String newState) {

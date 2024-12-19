@@ -2,7 +2,6 @@ package TelegramBot.bot.logic;
 
 import TelegramBot.bot.BotUtils;
 import TelegramBot.data.ConstantDB;
-import TelegramBot.data.DatabaseConnection;
 import TelegramBot.data.DatabaseTools;
 import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.ConstantResourcesForArmy;
@@ -27,8 +26,14 @@ public class Army {
         this.editMessage = botUtils.getEditMessage();
     }
 
-    public static Integer getArmyPower(Map<String, Integer> builds, Map<String, Integer> army) {
-        Integer armyPower = 0;
+    public static Integer calculatingArmyPower(Map<String, Integer> builds, Map<String, Integer> army) {
+        Integer warriorPower = army.get(ConstantDB.USER_WARRIOR_UNIT) * builds.get(ConstantDB.USER_BARRACKS) * 100;
+        Integer magePower = army.get(ConstantDB.USER_MAGE_UNIT) * builds.get(ConstantDB.USER_MAGE_TOWER) * 200;
+        Integer archerPower = army.get(ConstantDB.USER_ARCHER_UNIT) * builds.get(ConstantDB.USER_SHOOTING_RANGE) * 300;
+        Integer paladinPower = army.get(ConstantDB.USER_PALADIN_UNIT) * builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE) * 500;
+        Integer healerPower = army.get(ConstantDB.USER_HEALER_UNIT) * builds.get(ConstantDB.USER_CHURCH) * 700;
+        Integer armyPower = warriorPower + magePower + archerPower + paladinPower + healerPower;
+        System.out.println(armyPower);
         return armyPower;
     }
 
@@ -73,9 +78,40 @@ public class Army {
         return message;
     }
 
-    public void armyRecruitingHandler(long chatID, String callbackData, Integer messageID){
+    public void armyRecruitingHandler(long chatID, String callbackData, Integer messageID) {
+
         userStateRepository.setState(chatID, ConstantKB.CALLBACK_RECRUITING_BUTTON);
         messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, recruitingMessage(databaseTools.getArmy(chatID), databaseTools.getResources(chatID).get(ConstantDB.USER_GOLD))));
+
+    }
+
+    public boolean checkRecruitingArmyOnBuilds(Map<String, Integer> builds, String unit){
+        if(unit.equals(ConstantDB.USER_WARRIOR_UNIT)){
+            if(builds.get(ConstantDB.USER_BARRACKS).equals(0)){
+                return false;
+            }
+        }
+        if(unit.equals(ConstantDB.USER_MAGE_UNIT)){
+            if(builds.get(ConstantDB.USER_MAGE_TOWER).equals(0)){
+                return false;
+            }
+        }
+        if(unit.equals(ConstantDB.USER_ARCHER_UNIT)){
+            if(builds.get(ConstantDB.USER_SHOOTING_RANGE).equals(0)){
+                return false;
+            }
+        }
+        if(unit.equals(ConstantDB.USER_PALADIN_UNIT)){
+            if(builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE).equals(0)){
+                return false;
+            }
+        }
+        if(unit.equals(ConstantDB.USER_HEALER_UNIT)){
+            if(builds.get(ConstantDB.USER_CHURCH).equals(0)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void recruitingHandler(long chatID, String callbackData, Integer messageID) {
@@ -83,18 +119,25 @@ public class Army {
 
         Map<String, Integer> army = databaseTools.getArmy(chatID);
         Map<String, Integer> resources = databaseTools.getResources(chatID);
+        Map<String, Integer> builds = databaseTools.getBuilds(chatID);
 
-        if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))) {
+        if(checkRecruitingArmyOnBuilds(builds, callbackData)) {
+            if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))) {
 
-            databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
-            databaseTools.setArmy(chatID, Army.recruitingArmy(army, callbackData));
-            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_SUCCESSFUL));
+                Map<String, Integer> calculatingArmy = recruitingArmy(army, callbackData);
+                Integer calculatingArmyPower = calculatingArmyPower(builds, calculatingArmy);
+                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
+                databaseTools.setArmy(chatID, calculatingArmy);
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_SUCCESSFUL));
+                databaseTools.setArmyPower(chatID, calculatingArmyPower);
 
+            } else {
+
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_FAILED));
+
+            }
         } else {
-
-            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_FAILED));
-
+            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UNIT_BUILD_NOT_BUILT));
         }
-
     }
 }

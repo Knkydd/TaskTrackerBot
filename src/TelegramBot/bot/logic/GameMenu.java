@@ -1,7 +1,6 @@
 package TelegramBot.bot.logic;
 
 import TelegramBot.bot.BotUtils;
-import TelegramBot.data.DatabaseConnection;
 import TelegramBot.data.DatabaseTools;
 import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.EditMessage;

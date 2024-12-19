@@ -2,7 +2,6 @@ package TelegramBot.bot.logic;
 
 import TelegramBot.bot.BotUtils;
 import TelegramBot.data.ConstantDB;
-import TelegramBot.data.DatabaseConnection;
 import TelegramBot.data.DatabaseTools;
 import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.ConstantResourcesForBuilds;
@@ -42,7 +41,7 @@ public class Builds {
         return message;
     }
 
-    public static String upgradeBuildsMessage(Map<String, Integer> builds) {
+    public String upgradeBuildsMessage(Map<String, Integer> builds) {
         String message = ConstantMessages.BUILDS_MESSAGE_UPGRADE;
         Set<String> buildsKeys = builds.keySet();
         String tempMessage = "";
@@ -65,19 +64,26 @@ public class Builds {
         return message;
     }
 
-    public static boolean checkUpgradeBuilds(Map<String, Integer> builds, String build) {
+    public boolean checkUpgradeBuilds(Map<String, Integer> builds, String build) {
         if (builds.get(build) >= ConstantResourcesForBuilds.LIST_LIMITS.get(build)) {
             return false;
         }
         return true;
     }
 
-    public static Map<String, Integer> upgradeBuilds(Map<String, Integer> builds, String build) {
+    public boolean checkBuildBeforeUpgrade(Map<String, Integer> builds, String build) {
+        if (builds.get(build).equals(0)) {
+            return false;
+        }
+        return true;
+    }
+
+    public Map<String, Integer> upgradeBuilds(Map<String, Integer> builds, String build) {
         builds.put(build, builds.get(build) + 1);
         return builds;
     }
 
-    public static String upbuildBuildsMessage(Map<String, Integer> builds) {
+    public String upbuildBuildsMessage(Map<String, Integer> builds) {
         String message = ConstantMessages.BUILDS_MESSAGE_UPBUILD;
         String tempMessage = "";
         Set<String> buildsKeys = builds.keySet();
@@ -95,6 +101,7 @@ public class Builds {
             }
             message += tempMessage;
             i++;
+
         }
         return message;
     }
@@ -116,12 +123,12 @@ public class Builds {
         switch (callbackData) {
             case ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON:
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPBUILD_BUILD_BUTTON);
-                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.upbuildBuildsMessage(builds)));
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, upbuildBuildsMessage(builds)));
                 break;
 
             case ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON:
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_UPGRADE_BUILD_BUTTON);
-                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, Builds.upgradeBuildsMessage(builds)));
+                messageSender.send(chatID, editMessage.messageEdit(chatID, messageID, callbackData, upgradeBuildsMessage(builds)));
                 break;
         }
     }
@@ -136,7 +143,6 @@ public class Builds {
         if (Builds.checkUpbuildBuilds(builds, callbackData)) {
 
             if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData))) {
-
                 databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData)));
                 databaseTools.setBuilds(chatID, Builds.upbuildBuilds(builds, callbackData));
                 messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_SUCCESSFUL));
@@ -160,23 +166,28 @@ public class Builds {
         Map<String, Integer> builds = databaseTools.getBuilds(chatID);
         Map<String, Integer> resources = databaseTools.getResources(chatID);
 
-        if (Builds.checkUpgradeBuilds(builds, callbackData)) {
+        if (checkBuildBeforeUpgrade(builds, callbackData)) {
 
-            if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(databaseTools.getBuilds(chatID).get(callbackData)))) {
+            if (checkUpgradeBuilds(builds, callbackData)) {
 
-                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(builds.get(callbackData))));
-                databaseTools.setBuilds(chatID, Builds.upgradeBuilds(resources, callbackData));
-                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));
+                if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(databaseTools.getBuilds(chatID).get(callbackData)))) {
+                    Map<String, Integer> updatedResources = Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(builds.get(callbackData)));
+                    databaseTools.setResources(chatID, updatedResources);
+                    databaseTools.setBuilds(chatID, upgradeBuilds(builds, callbackData));
+                    messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));
 
+                } else {
+
+                    messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED_RESOURCES));
+
+                }
             } else {
 
-                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_FAILED_RESOURCES));
+                messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
 
             }
         } else {
-
-            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_FAILED));
-
+            messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_NOT_BUILT_MESSAGE));
         }
     }
 }

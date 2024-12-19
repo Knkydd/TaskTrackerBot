@@ -20,13 +20,15 @@ public class ConstantMessages {
     public final static String BUILDS_MESSAGE_UPBUILD = "Постройки, которые вы можете построить:\n";
     public final static String NEXT_MOVE_MESSAGE = "Ход сделан";
     public final static String MOVE_CHOP_MESSAGE = "Вы успешно помогли с рубкой дров.\n" +
-                                                    "15 дерева добавлено";
-    public final static String MOVE_DIG_MESSAGE = "Вы успешно помогли с работой в карьере\n" +
-                                                    "10 камня добавлено";
+            "15 дерева добавлено";
+    public final static String MOVE_DIG_MESSAGE = "Вы успешно помогли с копанием камня\n" +
+            "10 камня добавлено";
     public final static String MOVE_WORK_ON_FARM_MESSAGE = "Вы успешно помогли своим людям на ферме\n" +
-                                                            "30 еды добавлено";
+            "30 еды добавлено";
     public final static String MOVE_TRADE_MESSAGE = "Вы успешно помогли с торговлей\n" +
-                                                    "50 золота доабвлено";
+            "50 золота доабвлено";
     public final static String ATTACK_ENEMY_SUCCESSFUL = "Войска противника успешно разгромлены";
     public final static String ATTACK_ENEMY_FAILED = "Недостаточно мощи армии, так что вы решаете отступить";
+    public final static String BUILD_NOT_BUILT_MESSAGE = "Здание еще не построено, чтобы его улучшать";
+    public final static String UNIT_BUILD_NOT_BUILT = "Вы не построили подходящее здание для юнита";
 }

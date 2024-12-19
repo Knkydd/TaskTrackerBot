@@ -1,7 +1,6 @@
 package TelegramBot.bot.logic;
 
 import TelegramBot.bot.BotUtils;
-import TelegramBot.data.DatabaseConnection;
 import TelegramBot.data.DatabaseTools;
 import TelegramBot.utility.ConstantMessages;
 import TelegramBot.utility.EditMessage;
@@ -29,7 +28,7 @@ public class MainMenu {
         if (userStateRepository.isEmpty()) {
             userStateRepository.setState(chatID, ConstantKB.MAIN_MENU);
         } else {
-            userStateRepository.removeAll();
+            userStateRepository.removeAll(chatID);
             userStateRepository.setState(chatID, ConstantKB.MAIN_MENU);
         }
     }

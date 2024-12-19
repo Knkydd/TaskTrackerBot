@@ -7,7 +7,7 @@ public class ConstantKB {
 
     public final static String NEXT_MOVE_BUTTON = "Следующий ход";
     public final static String MOVE_CHOP = "Рубить деревья";
-    public final static String MOVE_DIG = "Помочь в карьере";
+    public final static String MOVE_DIG = "Копать камень";
     public final static String MOVE_TRADE = "Торговать";
     public final static String MOVE_WORK_ON_FARM = "Помочь на ферме";
     public final static String ARMY_BUTTON = "Армия";
