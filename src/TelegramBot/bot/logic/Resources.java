@@ -27,16 +27,23 @@ public class Resources {
         return true;
     }
 
-    public static Map<String, Integer> updateResources(Map<String, Integer> resources, Map<String, Integer> expendedResources) {
+    public static Map<String, Integer> updateResources(Map<String, Integer> resources, Map<String, Integer> expendedResources, Integer flagUpdate) {
         Map<String, Integer> updatedResources = new HashMap<>();
         Set<String> resourcesKeys = resources.keySet();
         Iterator iterator = resourcesKeys.iterator();
-        while (iterator.hasNext()) {
-            String temp = (String) iterator.next();
-            Integer value = resources.get(temp) - expendedResources.get(temp);
-            updatedResources.put(temp, value);
+        if(flagUpdate.equals(0)) {
+            while (iterator.hasNext()) {
+                String temp = (String) iterator.next();
+                Integer value = resources.get(temp) - expendedResources.get(temp);
+                updatedResources.put(temp, value);
+            }
+        } else {
+            while (iterator.hasNext()) {
+                String temp = (String) iterator.next();
+                Integer value = resources.get(temp) + expendedResources.get(temp);
+                updatedResources.put(temp, value);
+            }
         }
-
         return updatedResources;
     }
 }

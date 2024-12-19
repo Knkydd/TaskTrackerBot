@@ -30,7 +30,7 @@ public class NextMove {
 
     public void setWoodResourceUpdate(Integer wood, Integer sawMillLevel, Integer townHallLevel) {
 
-        this.woodResourceUpdate = wood + (sawMillLevel * 15) + (townHallLevel * 5);
+        this.woodResourceUpdate = wood + (sawMillLevel * 10) + (townHallLevel * 5);
     }
 
     public void setGoldResourceUpdate(Integer gold, Integer tradeBuildLevel, Integer townHallLevel) {

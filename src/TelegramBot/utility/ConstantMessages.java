@@ -7,7 +7,7 @@ public class ConstantMessages {
     public final static String ACTIONS_MESSAGE = "Выберите действие";
     public final static String CHECK_REGISTRATION_MESSAGE = "Вы уже зарегистрированы, нажмите кнопку продолжить, чтобы продолжить игру\n";
     public final static String CHECK_CONTINUE_MESSAGE = "Вы не начинали игру. Пожалуйста, нажмите Начать игру, чтобы начать играть\n";
-    public final static String GAME_MESSAGE = "Ваше королевство активно развивается и вы величаво смотрите на него из своей ратуши\n";
+    public final static String GAME_MESSAGE = "Ваше королевство активно развивается и вы величаво смотрите на него из своей ратуши\n\n";
     public final static String BUILD_SUCCESSFUL = "Постройка успешно построена\n";
     public final static String BUILD_FAILED = "Вы хотите построить то, что уже построено\n";
     public final static String BUILD_FAILED_RESOURCES = "Вам не хватает ресурсов для постройки\n";
@@ -27,8 +27,8 @@ public class ConstantMessages {
             "30 еды добавлено";
     public final static String MOVE_TRADE_MESSAGE = "Вы успешно помогли с торговлей\n" +
             "50 золота доабвлено";
-    public final static String ATTACK_ENEMY_SUCCESSFUL = "Войска противника успешно разгромлены";
-    public final static String ATTACK_ENEMY_FAILED = "Недостаточно мощи армии, так что вы решаете отступить";
-    public final static String BUILD_NOT_BUILT_MESSAGE = "Здание еще не построено, чтобы его улучшать";
-    public final static String UNIT_BUILD_NOT_BUILT = "Вы не построили подходящее здание для юнита";
+    public final static String ATTACK_ENEMY_SUCCESSFUL = "Войска противника успешно разгромлены\n";
+    public final static String ATTACK_ENEMY_FAILED = "Недостаточно мощи армии, так что вы решаете отступить\n";
+    public final static String BUILD_NOT_BUILT_MESSAGE = "Здание еще не построено, чтобы его улучшать\n";
+    public final static String UNIT_BUILD_NOT_BUILT = "Вы не построили подходящее здание для юнита\n";
 }

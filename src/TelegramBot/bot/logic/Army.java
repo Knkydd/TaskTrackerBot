@@ -126,7 +126,7 @@ public class Army {
 
                 Map<String, Integer> calculatingArmy = recruitingArmy(army, callbackData);
                 Integer calculatingArmyPower = calculatingArmyPower(builds, calculatingArmy);
-                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData)));
+                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData), 0));
                 databaseTools.setArmy(chatID, calculatingArmy);
                 messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.RECRUITING_UNIT_SUCCESSFUL));
                 databaseTools.setArmyPower(chatID, calculatingArmyPower);
