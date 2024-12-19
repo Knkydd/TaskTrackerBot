@@ -16,7 +16,7 @@ public class ButtonsMaps {
     public final static Map<String, String> upbuildButtons = new LinkedHashMap<>();
     public final static Map<String, String> armyButtons = new LinkedHashMap<>();
     public final static Map<String, String> recruitingButtons = new LinkedHashMap<>();
-
+    public final static Map<String, String> attackButtons = new LinkedHashMap<>();
 
     static {
         startButtons.put(ConstantKB.START_BUTTON, ConstantKB.CALLBACK_START_BUTTON);
@@ -34,13 +34,17 @@ public class ButtonsMaps {
 
         oneBackButton.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
 
-        actionsButtons.put(ConstantKB.ATTACK_BUTTON, ConstantKB.CALLBACK_ATTACK_BUTTON);
+        attackButtons.put(ConstantKB.ATTACK_ENEMY_BUTTON, ConstantKB.CALLBACK_ATTACK_ENEMY_BUTTON);
+        attackButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
+
+
         actionsButtons.put(ConstantKB.NEXT_MOVE_BUTTON, ConstantKB.CALLBACK_NEXT_MOVE_BUTTON);
         actionsButtons.put(ConstantKB.MOVE_CHOP, ConstantKB.CALLBACK_MOVE_CHOP);
         actionsButtons.put(ConstantKB.MOVE_DIG, ConstantKB.CALLBACK_MOVE_DIG);
+        actionsButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
         actionsButtons.put(ConstantKB.MOVE_TRADE, ConstantKB.CALLBACK_MOVE_TRADE);
         actionsButtons.put(ConstantKB.MOVE_WORK_ON_FARM, ConstantKB.CALLBACK_MOVE_WORK_ON_FARM);
-        actionsButtons.put(ConstantKB.BACK_BUTTON, ConstantKB.CALLBACK_BACK_BUTTON);
+        actionsButtons.put(ConstantKB.ATTACK_BUTTON, ConstantKB.CALLBACK_ATTACK_BUTTON);
 
         upgradeButtons.put(ConstantDB.SHOOTING_RANGE, ConstantBuildUp.SHOOTING_RANGE_UPGRADE);
         upgradeButtons.put(ConstantDB.MAGE_TOWER, ConstantBuildUp.MAGE_TOWER_UPGRADE);

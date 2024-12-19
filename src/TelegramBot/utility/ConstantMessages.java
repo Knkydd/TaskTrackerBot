@@ -27,4 +27,6 @@ public class ConstantMessages {
                                                             "30 еды добавлено";
     public final static String MOVE_TRADE_MESSAGE = "Вы успешно помогли с торговлей\n" +
                                                     "50 золота доабвлено";
+    public final static String ATTACK_ENEMY_SUCCESSFUL = "Войска противника успешно разгромлены";
+    public final static String ATTACK_ENEMY_FAILED = "Недостаточно мощи армии, так что вы решаете отступить";
 }

@@ -14,6 +14,7 @@ public class ConstantDB {
 
     public final static String USER_ID = "chatID";
     public final static String USER_NAME = "username";
+    public final static String USER_LEVEL_ATTACK = "attackLevel";
 
     public final static String USER_WOOD = "Wood";
     public final static String USER_GOLD = "Gold";
@@ -55,7 +56,6 @@ public class ConstantDB {
     public final static String PALADIN_UNIT = "Паладин";
     public final static String HEALER_UNIT = "Целитель";
 
-    public final static String[] LIST_OF_UNITS = new String[]{USER_WARRIOR_UNIT, USER_MAGE_UNIT, USER_ARCHER_UNIT, USER_HEALER_UNIT, USER_PALADIN_UNIT};
 
     static {
         accordanceListOfBuilds.put(USER_TOWN_HALL, TOWN_HALL); // Для сообщений, чтобы были на русском

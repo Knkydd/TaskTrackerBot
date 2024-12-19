@@ -62,6 +62,10 @@ public class EditMessage {
                 messageEdited.setText(text);
                 messageEdited.setReplyMarkup(keyboard.recruitingKeyboard());
                 break;
+            case ConstantKB.CALLBACK_ATTACK_BUTTON:
+                messageEdited.setText(text);
+                messageEdited.setReplyMarkup(keyboard.attackKeyboard());
+                break;
         }
         return messageEdited;
     }

@@ -18,6 +18,7 @@ public class ConstantKB {
     public final static String RECRUITING_BUTTON = "Нанять";
     public final static String UPGRADE_BUILD_BUTTON = "Улучшить";
     public final static String UPBUILD_BUILD_BUTTON = "Построить";
+    public final static String ATTACK_ENEMY_BUTTON = "Атака";
 
     public final static String MAIN_MENU = "mainMenu";
 
@@ -30,6 +31,7 @@ public class ConstantKB {
     public final static String CALLBACK_BACK_BUTTON = "back";
     public final static String CALLBACK_ACTION_BUTTON = "action";
     public final static String CALLBACK_ATTACK_BUTTON = "attack";
+    public final static String CALLBACK_ATTACK_ENEMY_BUTTON = "attackEnemy";
     public final static String CALLBACK_BUILDS_BUTTON = "builds";
     public final static String CALLBACK_RECRUITING_BUTTON = "recruiting";
 

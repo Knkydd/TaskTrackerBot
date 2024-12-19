@@ -70,6 +70,11 @@ public class Keyboard {
         InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.recruitingButtons, 3);
         return keyboard;
     }
+
+    public InlineKeyboardMarkup attackKeyboard(){
+        InlineKeyboardMarkup keyboard = keyboardBuilder.createKeyboard(ButtonsMaps.attackButtons,1);
+        return keyboard;
+    }
 }
 
 
