@@ -15,14 +15,14 @@ public class GameMenu {
     private UserStateRepository userStateRepository;
     private EditMessage editMessage;
 
-    public GameMenu(BotUtils botUtils){
+    public GameMenu(BotUtils botUtils) {
         this.messageSender = botUtils.getMessageSender();
         this.databaseTools = botUtils.getDatabaseTools();
         this.userStateRepository = botUtils.getUserStateRepository();
         this.editMessage = botUtils.getEditMessage();
     }
 
-    public void gameMenuHandler(long chatID, String callbackData, Integer messageID){
+    public void gameMenuHandler(long chatID, String callbackData, Integer messageID) {
         switch (callbackData) {
             case ConstantKB.CALLBACK_ACTION_BUTTON:
                 userStateRepository.setState(chatID, ConstantKB.CALLBACK_ACTION_BUTTON);

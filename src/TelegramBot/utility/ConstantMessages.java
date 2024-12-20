@@ -31,4 +31,8 @@ public class ConstantMessages {
     public final static String ATTACK_ENEMY_FAILED = "Недостаточно мощи армии, так что вы решаете отступить\n";
     public final static String BUILD_NOT_BUILT_MESSAGE = "Здание еще не построено, чтобы его улучшать\n";
     public final static String UNIT_BUILD_NOT_BUILT = "Вы не построили подходящее здание для юнита\n";
+    public final static String ARMY_MESSAGE = "Ваша могучая армия: \n\n";
+    public final static String QUESTION_ABOUT_RECRUITING = "Кого вы хотите нанять?\n";
+    public final static String FINAL_BATTLE_MESSAGE = "Вы уже прошли игру, атаковать больше некого)";
+
 }

@@ -7,7 +7,7 @@ import TelegramBot.utility.keyboard.ConstantKB;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class BotController{
+public class BotController {
     private final MessageSender messageSender;
     private final BotUtils botUtils;
     private final DatabaseConnection dbConnection;
@@ -42,9 +42,10 @@ public class BotController{
     private void handleCommands(Update update) {
         long chatID = update.getMessage().getChatId();
         String text = update.getMessage().getText();
-        commands.setChatID(chatID);
         if (text.equalsIgnoreCase("/start")) {
-            commands.getCommand("/start").run();
+            TriConsumer<Long, Integer, String> command = commands.getCommand("/start");
+            command.accept(chatID, 0, "");
+
         }
     }
 
@@ -53,14 +54,12 @@ public class BotController{
         String callbackData = update.getCallbackQuery().getData();
         Integer messageID = update.getCallbackQuery().getMessage().getMessageId();
         String username = update.getCallbackQuery().getFrom().getUserName();
-        commands.setChatID(chatID);
-        commands.setUsername(username);
-        commands.setMessageID(messageID);
         if (callbackData.equalsIgnoreCase(ConstantKB.CALLBACK_BACK_BUTTON)) {
             callbackData = userStateRepository.getState(chatID);
         }
         try {
-            commands.getCommand(callbackData).run();
+            TriConsumer<Long, Integer, String> command = commands.getCommand(callbackData);
+            command.accept(chatID, messageID, username);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,10 +14,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Army {
-    private DatabaseTools databaseTools;
-    private MessageSender messageSender;
-    private UserStateRepository userStateRepository;
-    private EditMessage editMessage;
+    private final DatabaseTools databaseTools;
+    private final MessageSender messageSender;
+    private final UserStateRepository userStateRepository;
+    private final EditMessage editMessage;
 
     public Army(BotUtils botUtils) {
         this.databaseTools = botUtils.getDatabaseTools();
@@ -37,7 +37,7 @@ public class Army {
     }
 
     public static String armyMessage(Map<String, Integer> army, Integer armyPower) {
-        String message = "Ваша могучая армия: \n\n";
+        String message = ConstantMessages.ARMY_MESSAGE;
         String tempMessage = "";
         Set<String> armyKeys = army.keySet();
         Iterator iteratorArmyKeys = armyKeys.iterator();
@@ -60,7 +60,7 @@ public class Army {
     }
 
     public static String recruitingMessage(Map<String, Integer> army, Integer Gold) {
-        String message = "Кого вы хотите нанять?\n";
+        String message = ConstantMessages.QUESTION_ABOUT_RECRUITING;
         String tempMessage = "";
         Set<String> armyKeys = army.keySet();
         Integer i = 1;
@@ -84,29 +84,29 @@ public class Army {
 
     }
 
-    public boolean checkRecruitingArmyOnBuilds(Map<String, Integer> builds, String unit){
-        if(unit.equals(ConstantDB.USER_WARRIOR_UNIT)){
-            if(builds.get(ConstantDB.USER_BARRACKS).equals(0)){
+    public boolean checkRecruitingArmyOnBuilds(Map<String, Integer> builds, String unit) {
+        if (unit.equals(ConstantDB.USER_WARRIOR_UNIT)) {
+            if (builds.get(ConstantDB.USER_BARRACKS).equals(0)) {
                 return false;
             }
         }
-        if(unit.equals(ConstantDB.USER_MAGE_UNIT)){
-            if(builds.get(ConstantDB.USER_MAGE_TOWER).equals(0)){
+        if (unit.equals(ConstantDB.USER_MAGE_UNIT)) {
+            if (builds.get(ConstantDB.USER_MAGE_TOWER).equals(0)) {
                 return false;
             }
         }
-        if(unit.equals(ConstantDB.USER_ARCHER_UNIT)){
-            if(builds.get(ConstantDB.USER_SHOOTING_RANGE).equals(0)){
+        if (unit.equals(ConstantDB.USER_ARCHER_UNIT)) {
+            if (builds.get(ConstantDB.USER_SHOOTING_RANGE).equals(0)) {
                 return false;
             }
         }
-        if(unit.equals(ConstantDB.USER_PALADIN_UNIT)){
-            if(builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE).equals(0)){
+        if (unit.equals(ConstantDB.USER_PALADIN_UNIT)) {
+            if (builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE).equals(0)) {
                 return false;
             }
         }
-        if(unit.equals(ConstantDB.USER_HEALER_UNIT)){
-            if(builds.get(ConstantDB.USER_CHURCH).equals(0)){
+        if (unit.equals(ConstantDB.USER_HEALER_UNIT)) {
+            if (builds.get(ConstantDB.USER_CHURCH).equals(0)) {
                 return false;
             }
         }
@@ -120,7 +120,7 @@ public class Army {
         Map<String, Integer> resources = databaseTools.getResources(chatID);
         Map<String, Integer> builds = databaseTools.getBuilds(chatID);
 
-        if(checkRecruitingArmyOnBuilds(builds, callbackData)) {
+        if (checkRecruitingArmyOnBuilds(builds, callbackData)) {
             if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForArmy.LIST_GOLD_FOR_ARMY.get(callbackData))) {
 
                 Map<String, Integer> calculatingArmy = recruitingArmy(army, callbackData);

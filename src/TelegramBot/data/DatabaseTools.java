@@ -126,40 +126,40 @@ public class DatabaseTools extends Config {
         }
     }
 
-    public Integer getCurrentAttackLevel(long chatID){
+    public Integer getCurrentAttackLevel(long chatID) {
         Integer currentAttackLevel = 1;
         ResultSet resultSet = null;
         String getterAttackLevel = String.format("SELECT %s FROM %s WHERE %s=%s", ConstantDB.USER_LEVEL_ATTACK, ConstantDB.TABLE_ARMY, ConstantDB.USER_ID, chatID);
-        try(Statement statement = dbConnection.createStatement()){
+        try (Statement statement = dbConnection.createStatement()) {
             resultSet = statement.executeQuery(getterAttackLevel);
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 currentAttackLevel = resultSet.getInt(ConstantDB.USER_LEVEL_ATTACK);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return currentAttackLevel;
     }
 
-    public void setCurrentLevelAttack(long chatID, Integer currentLevel){
+    public void setCurrentLevelAttack(long chatID, Integer currentLevel) {
         String insertLevelAttack = String.format("UPDATE %s set %s=%s WHERE %s=%s", ConstantDB.TABLE_ARMY, ConstantDB.USER_LEVEL_ATTACK, currentLevel, ConstantDB.USER_ID, chatID);
-        try(Statement statement = dbConnection.createStatement()){
+        try (Statement statement = dbConnection.createStatement()) {
             statement.executeUpdate(insertLevelAttack);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Integer getArmyPower(long chatID){
+    public Integer getArmyPower(long chatID) {
         Integer armyPower = 0;
         ResultSet resultSet = null;
         String getterArmyPower = String.format("SELECT %s FROM %s WHERE %s=%s", ConstantDB.USER_ARMY_POWER, ConstantDB.TABLE_USERS, ConstantDB.USER_ID, chatID);
-        try(Statement statement = dbConnection.createStatement()){
+        try (Statement statement = dbConnection.createStatement()) {
             resultSet = statement.executeQuery(getterArmyPower);
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 armyPower = resultSet.getInt(ConstantDB.USER_ARMY_POWER);
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return armyPower;

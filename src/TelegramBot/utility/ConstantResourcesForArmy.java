@@ -2,7 +2,6 @@ package TelegramBot.utility;
 
 import TelegramBot.data.ConstantDB;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ConstantResourcesForArmy {

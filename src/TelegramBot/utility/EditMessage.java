@@ -6,9 +6,10 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageTe
 public class EditMessage {
     private Keyboard keyboard;
 
-    public EditMessage(){
+    public EditMessage() {
         this.keyboard = new Keyboard();
     }
+
     public EditMessageText messageEdit(long chatID, Integer messageID, String callbackData, String text) {
         EditMessageText messageEdited = new EditMessageText();
         messageEdited.setMessageId(messageID);

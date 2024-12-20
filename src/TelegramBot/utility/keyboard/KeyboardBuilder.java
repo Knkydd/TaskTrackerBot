@@ -21,7 +21,7 @@ public class KeyboardBuilder {
                 keyboardRow = new ArrayList<>();
             }
         }
-        if(!keyboardRow.isEmpty()){
+        if (!keyboardRow.isEmpty()) {
             keyboardRowsList.add(keyboardRow);
         }
         keyboard.setKeyboard(keyboardRowsList);

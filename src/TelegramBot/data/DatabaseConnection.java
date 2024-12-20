@@ -8,11 +8,11 @@ public class DatabaseConnection extends Config {
     private Connection dbConnection;
     private DatabaseTools databaseTools;
 
-    public DatabaseConnection(){
-        try{
+    public DatabaseConnection() {
+        try {
             dbConnection = getDbConnection();
             databaseTools = new DatabaseTools(dbConnection);
-        } catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -24,7 +24,7 @@ public class DatabaseConnection extends Config {
         return dbConnection;
     }
 
-    public DatabaseTools getDatabaseTools(){
+    public DatabaseTools getDatabaseTools() {
         return databaseTools;
     }
 

@@ -31,7 +31,7 @@ public class Resources {
         Map<String, Integer> updatedResources = new HashMap<>();
         Set<String> resourcesKeys = resources.keySet();
         Iterator iterator = resourcesKeys.iterator();
-        if(flagUpdate.equals(0)) {
+        if (flagUpdate.equals(0)) {
             while (iterator.hasNext()) {
                 String temp = (String) iterator.next();
                 Integer value = resources.get(temp) - expendedResources.get(temp);

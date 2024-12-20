@@ -112,7 +112,7 @@ public class ConstantResourcesForBuilds {
             "Food", 0
     );
 
-    public final static Map<String, Integer> RESOURCES_FOR_SAWMILL_UPGRADE_TO_2= Map.of(
+    public final static Map<String, Integer> RESOURCES_FOR_SAWMILL_UPGRADE_TO_2 = Map.of(
             "Wood", 80,
             "Gold", 1500,
             "Stone", 100,

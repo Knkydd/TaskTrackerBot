@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Token {
-    public static String readToken(){
+    public static String readToken() {
         try {
             Scanner scan = new Scanner(new File("./Token.txt"));
             String line = scan.nextLine();

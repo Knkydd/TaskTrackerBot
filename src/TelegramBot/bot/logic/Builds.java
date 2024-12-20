@@ -41,7 +41,7 @@ public class Builds {
         return message;
     }
 
-    public String upgradeBuildsMessage(Map<String,Integer> resources, Map<String, Integer> builds) {
+    public String upgradeBuildsMessage(Map<String, Integer> resources, Map<String, Integer> builds) {
         String message = ConstantMessages.BUILDS_MESSAGE_UPGRADE;
         Set<String> buildsKeys = builds.keySet();
         String tempMessage = "";
@@ -57,12 +57,12 @@ public class Builds {
             } else {
                 tempMessage = String.format("%s:     %s     Уровень %s -> Уровень %s\n",
                         i, ConstantDB.accordanceListOfBuilds.get(temp), builds.get(temp), builds.get(temp) + 1);
-                tempMessage+=String.format("Нужно: %s дерева, %s золота и %s камня\n\n", resourcesNeed.get("Wood"), resourcesNeed.get("Gold"), resourcesNeed.get("Stone"));
+                tempMessage += String.format("Нужно: %s дерева, %s золота и %s камня\n\n", resourcesNeed.get("Wood"), resourcesNeed.get("Gold"), resourcesNeed.get("Stone"));
             }
-            message += tempMessage ;
+            message += tempMessage;
             i++;
         }
-        message+=Resources.resourceMessage(resources);
+        message += Resources.resourceMessage(resources);
         return message;
     }
 
@@ -102,12 +102,12 @@ public class Builds {
             if (!builds.get(temp).equals(0)) {
                 tempMessage += "(Построено)\n\n";
             } else {
-                tempMessage+=String.format("Нужно: %s дерева, %s золота и %s камня\n\n",resourcesNeed.get("Wood"), resourcesNeed.get("Gold"), resourcesNeed.get("Stone"));
+                tempMessage += String.format("Нужно: %s дерева, %s золота и %s камня\n\n", resourcesNeed.get("Wood"), resourcesNeed.get("Gold"), resourcesNeed.get("Stone"));
             }
             message += tempMessage;
             i++;
         }
-        message+=Resources.resourceMessage(resources);
+        message += Resources.resourceMessage(resources);
         return message;
     }
 
@@ -149,7 +149,7 @@ public class Builds {
         if (Builds.checkUpbuildBuilds(builds, callbackData)) {
 
             if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData))) {
-                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData),0));
+                databaseTools.setResources(chatID, Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_BUILD.get(callbackData), 0));
                 databaseTools.setBuilds(chatID, Builds.upbuildBuilds(builds, callbackData));
                 messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.BUILD_SUCCESSFUL));
 
@@ -177,7 +177,7 @@ public class Builds {
             if (checkUpgradeBuilds(builds, callbackData)) {
 
                 if (Resources.checkResourcesOnSpending(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(databaseTools.getBuilds(chatID).get(callbackData)))) {
-                    Map<String, Integer> updatedResources = Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(builds.get(callbackData)),0);
+                    Map<String, Integer> updatedResources = Resources.updateResources(resources, ConstantResourcesForBuilds.RESOURCES_FOR_UPGRADE.get(callbackData).get(builds.get(callbackData)), 0);
                     databaseTools.setResources(chatID, updatedResources);
                     databaseTools.setBuilds(chatID, upgradeBuilds(builds, callbackData));
                     messageSender.send(chatID, editMessage.warningMessage(chatID, messageID, ConstantMessages.UPGRADE_BUILD_SUCCESSFUL));

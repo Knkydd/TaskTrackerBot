@@ -15,7 +15,7 @@ public class BotUtils {
     private final EditMessage editMessage;
     private final Keyboard keyboard;
 
-    public BotUtils(MessageSender messageSender){
+    public BotUtils(MessageSender messageSender) {
         dbConnection = new DatabaseConnection();
         this.messageSender = messageSender;
         databaseTools = dbConnection.getDatabaseTools();

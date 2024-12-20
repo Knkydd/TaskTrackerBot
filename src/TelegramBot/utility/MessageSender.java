@@ -27,15 +27,4 @@ public class MessageSender {
             e.printStackTrace();
         }
     }
-
-    public void send(long chatID, String Text) {
-        SendMessage message = new SendMessage();
-        message.setChatId(chatID);
-        message.setText(Text);
-        try {
-            bot.execute(message);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
 }
