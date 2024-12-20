@@ -18,11 +18,9 @@ public class UserStateRepository {
     public void setState(long chatID, String newState) {
         if (userStates.get(chatID).isEmpty()) {
             userStates.computeIfAbsent(chatID, k -> new ArrayList<>()).add("mainMenu");
-            System.out.println(userStates);
         } else {
             List<String> states = userStates.get(chatID);
             states.add(newState);
-            System.out.println(userStates);
             userStates.put(chatID, states);
         }
     }
