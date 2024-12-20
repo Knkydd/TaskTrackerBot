@@ -31,7 +31,6 @@ public class UserStateRepository {
             result = states.getLast();
             states.removeLast();
         }
-        System.out.println(userStates);
         return result;
     }
 }
