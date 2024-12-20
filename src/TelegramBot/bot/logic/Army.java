@@ -33,7 +33,6 @@ public class Army {
         Integer paladinPower = army.get(ConstantDB.USER_PALADIN_UNIT) * builds.get(ConstantDB.USER_CHAPEL_OF_LAST_HOPE) * 500;
         Integer healerPower = army.get(ConstantDB.USER_HEALER_UNIT) * builds.get(ConstantDB.USER_CHURCH) * 700;
         Integer armyPower = warriorPower + magePower + archerPower + paladinPower + healerPower;
-        System.out.println(armyPower);
         return armyPower;
     }
 
